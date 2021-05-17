@@ -1,0 +1,51 @@
+:root {
+  --White_Smoke: hsl(45, 22.2%, 96.6%);
+  --Blue_Night: hsl(222, 16.7%, 23.5%);
+  --Geranium_Red: hsl(1.1, 58.2%, 64.3%);
+  --Big_Stone: hsl(200, 17.4%, 23.7%);
+  --Iridescence: hsl(211, 62%, 86%);
+  --Desert_Paper: hsl(23, 47%, 93%);
+  --Lime: hsl(96, 100%, 50%);
+  --Purple: hsl(286, 97%, 85%);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.item {
+  width: fit-content;
+  height: fit-content;
+  border-width: 0.2px;
+  font-size: 2rem;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 2px;
+  background-color: var(--Geranium_Red);
+  color: var(--White_Smoke);
+}
+.item button {
+  background-color: var(--White_Smoke);
+  color: var(--Big_Stone);
+  margin-top: 1rem;
+}
+button {
+  border: unset;
+  font-size: 2rem;
+  padding: 1rem;
+  background-color: var(--Blue_Night);
+  color: var(--White_Smoke);
+}
+[data-valid="false"] {
+  border-color: red;
+}
+[data-valid="true"] {
+  border-color: green;
+}
+.signup {
+  display: flex;
+  flex-direction: column;
+}
+.display_none {
+  display: none;
+}

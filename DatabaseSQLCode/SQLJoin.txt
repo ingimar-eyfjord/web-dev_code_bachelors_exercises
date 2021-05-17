@@ -1,0 +1,3 @@
+SELECT public.accounting.hours_done, public.courses.course_desciption
+FROM accounting
+INNER JOIN public.courses ON public.courses.course_code = public.accounting.course_code

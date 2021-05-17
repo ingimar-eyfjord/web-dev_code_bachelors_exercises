@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- ?Super cool meta information for crawlers go here -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+
+    <title>Contact</title>
+  </head>
+  <body>
+    <header>
+      <h1>Restaurant KEA</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html"> Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a class="active" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <img src="./images/map.jpg" alt="Map of Kea building" />
+      <address>
+        <ul>
+          <li class="address">Lygten 37</li>
+          <li class="zip">2400 Copenhagen</li>
+          <li class="phone">Phone no.: <a href="tel=20 82 53 70">20 82 53 70</a></li>
+        </ul>
+      </address>
+
+      <fieldset>
+        <legend>Contact form</legend>
+        <form action="form.php">
+          <label for="FullName">Full Name</label>
+          <input name="FullName" required type="text" id="FullName" />
+          <label for="PhoneNo">Phone no.</label>
+          <input name="PhoneNp" required type="tel" pattern="[\+]\d{2}[0-9]{2}[0-9]{2}[0-8]{2}[0-9]{2}" id="PhoneNo" />
+          <label for="Email">E-mail</label>
+          <input name="Email" required type="email" id="Email" />
+          <label for="Persons">Persons</label>
+          <input name="Persons" required type="number" step="1" min="1" max="20" id="Persons" />
+          <label for="DateAndTime">Date and Time</label>
+          <input name="DateAndTime" required type="datetime-local" id="DateAndTime" />
+          <label for="furtherInfo">Further Information</label>
+          <textarea name="furtherInfo" id="furtherInfo" cols="30" rows="10"></textarea>
+          <button>Send</button>
+        </form>
+      </fieldset>
+    </main>
+    <footer>
+      <p>© 2021 KEA Web Development</p>
+    </footer>
+  </body>
+</html>

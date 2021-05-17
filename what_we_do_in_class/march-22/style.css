@@ -1,0 +1,170 @@
+html {
+  background-color: pink;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  width: 20%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: transparent; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: var(--stWidth); /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: var(--colour); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+.pStrength {
+  color: var(--colour);
+}
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #4caf50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+[data-valid="false"] {
+  background-color: red;
+}
+
+[data-valid="true"] {
+  background-color: green;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+.log_sign_form {
+  width: 20%;
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+}
+
+.log_sign_form > input {
+  margin: 0.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+}
+.log_sign_form > input [name="Password"] {
+  margin-top: 0;
+}
+.log_sign_form div {
+  padding: 1rem;
+  font-size: 1rem;
+}
+.log_sign_form button {
+  padding: 1rem;
+  font-size: 1rem;
+  margin: 0.5rem;
+}
+
+.inputParent {
+  border: 0;
+  margin: 0;
+  display: inline-flex;
+  padding: 0;
+  position: relative;
+  min-width: 0;
+  flex-direction: column;
+  vertical-align: top;
+}
+.animatedLabel {
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0;
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.00938em;
+  display: block;
+  transform-origin: top left;
+  top: 0;
+  left: 0;
+  position: absolute;
+  transform: translate(0, 24px) scale(1);
+  transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+.inputDiv {
+  color: #fff;
+  cursor: text;
+  display: inline-flex;
+  position: relative;
+  font-size: 1rem;
+  box-sizing: border-box;
+  align-items: center;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.1876em;
+  letter-spacing: 0.00938em;
+}
+.inputDiv:before {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "\00a0";
+  position: absolute;
+  transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+}
+.inputDiv:after {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "\00a0";
+  position: absolute;
+  transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+}
+
+.inputDiv input {
+  font: inherit;
+  color: currentColor;
+  width: 100%;
+  border: 0;
+  height: 1.1876em;
+  margin: 0;
+  display: block;
+  padding: 6px 0 7px;
+  min-width: 0;
+  background: none;
+  box-sizing: content-box;
+  animation-name: mui-auto-fill-cancel;
+  letter-spacing: inherit;
+  animation-duration: 10ms;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input:focus {
+  border: unset;
+  outline: none;
+}
+input:focus label {
+  transform: translate(0, 1.5px) scale(0.75);
+  transform-origin: top left;
+}

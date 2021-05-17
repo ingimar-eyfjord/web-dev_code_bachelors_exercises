@@ -1,0 +1,10 @@
+html {
+  background: var(--backgroundColour);
+}
+
+section {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 1rem 0 1rem 0;
+}

@@ -1,0 +1,134 @@
+:root {
+  --White_Smoke: hsl(45, 22.2%, 96.6%);
+  --Blue_Night: hsl(222, 16.7%, 23.5%);
+  --Geranium_Red: hsl(1.1, 58.2%, 64.3%);
+  --Big_Stone: hsl(200, 17.4%, 23.7%);
+  --Iridescence: hsl(211, 62%, 86%);
+  --Desert_Paper: hsl(23, 47%, 93%);
+  --Lime: hsl(96, 100%, 50%);
+  --Purple: hsl(286, 97%, 85%);
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  background-color: var(--Big_Stone);
+  max-width: 100%;
+  overflow-x: hidden;
+}
+.hide {
+  opacity: 0.2;
+}
+span {
+  margin: 0 0 0 2.5px;
+}
+.MainContainer {
+  margin: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: fit-content;
+  width: fit-content;
+  min-height: 10rem;
+  /* background-color: #c4daf1; */
+}
+
+.boxContainer > div {
+  padding-top: 1.5rem;
+  text-align: center;
+  width: 10vh;
+  height: 5vh;
+  margin: 1rem;
+}
+
+[data-element="geranium_red"] {
+  background-color: var(--Geranium_Red);
+  color: var(--Desert_Paper);
+}
+[data-element="blue_night"] {
+  background-color: var(--Blue_Night);
+  color: var(--White_Smoke);
+}
+[data-element="iridescence"] {
+  background-color: var(--Iridescence);
+  color: var(--Blue_Night);
+}
+
+button {
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  margin: 0 1rem 0 1rem;
+  padding: 1rem;
+  color: white;
+  font-size: 1rem;
+  background: linear-gradient(45deg, #c36664, #e87977);
+}
+
+button:focus {
+  outline: unset;
+}
+p,
+span {
+  font-size: 1.8rem;
+  color: var(--Geranium_Red);
+}
+a {
+  text-decoration: none;
+  color: var(--Blue_Night);
+}
+
+.UserInfoContainer > div > p {
+  text-decoration: unset;
+}
+.UserInfoContainer span {
+  text-decoration: unset;
+}
+.user {
+  margin: 1rem;
+  width: auto;
+  height: auto;
+  display: grid;
+  grid-template-columns: 170px 2fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  padding: 0.5rem;
+  justify-items: start;
+  align-items: center;
+  border-radius: 5px;
+  background: linear-gradient(45deg, #ffffff, #dfdedc);
+}
+.UserInfoContainer {
+  justify-self: start;
+  align-self: end;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+.userImg {
+  height: 150px;
+  width: 150px;
+}
+.userImgContainer {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  border: solid;
+  border-color: var(--Geranium_Red);
+  border-width: 5px;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.HideButtonContainer {
+  margin-top: 1rem;
+  align-self: start;
+  grid-column: 1 / span 3;
+  grid-row: 3;
+}
+.PointerNo {
+  pointer-events: none;
+  cursor: unset;
+  opacity: 0.7;
+  box-shadow: inset 8px -8px 15px #a95857, inset -8px 8px 15px #ff8a87;
+}

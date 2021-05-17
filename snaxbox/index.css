@@ -1,0 +1,88 @@
+:root {
+  --TeamsBackgroundColor: #f3f2f1;
+  /* Primary Color palate */
+  /* Should be neutralized to allow space and primary blue to take center stage; */
+  --Anchor_Navy: #344a5f;
+  --Anchor_Navy_80: rgba(52, 74, 95, 0.8);
+  --Anchor_Navy_20: rgba(52, 74, 95, 0.2);
+  --Primary_Blue: #2a94d6;
+  --Slate_Gray: #f0f1f2;
+  --White: #ffffff;
+  /* Each Area of the app is branded  with a color and an image these colors are unsaturated to work better with the primary colours */
+  --Post: #4eb1cb;
+  --Thanks: #cf5c60;
+  --Account: #717ecd;
+  --Task: #4ab471;
+  --Opportunity: #f3ae4e;
+  --Event: #d96383;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+table {
+  border: 1px solid var(--Anchor_Navy);
+  background-color: var(--White);
+  width: 50%;
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+  box-sizing: inherit;
+  text-indent: initial;
+  border-spacing: 2px;
+}
+table thead th {
+  font-size: 1rem;
+  display: table-cell;
+  border-color: var(--Anchor_Navy);
+  border: 1px solid var(--Anchor_Navy);
+  background-color: var(--Anchor_Navy);
+  color: var(--White);
+  height: 2rem;
+  width: fit-content;
+  vertical-align: top;
+  position: relative;
+  text-align: left;
+  vertical-align: middle;
+  padding: 0.5rem;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+td {
+  padding: 0.5rem;
+  display: table-cell;
+  border-color: var(--Anchor_Navy);
+  border: 1px solid var(--Anchor_Navy);
+  height: 2rem;
+  max-width: fit-content;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  position: relative;
+  text-align: left;
+  vertical-align: middle;
+}
+td input {
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+td button {
+  width: 100%;
+}
+td .control-69 {
+  margin-bottom: 0.5rem;
+}
+.hidden {
+  display: none;
+}
+
+.lineGraph {
+  width: 30%;
+  height: 50%;
+}
+.lineGraph canvas {
+  width: 100%;
+  height: 30rem;
+}

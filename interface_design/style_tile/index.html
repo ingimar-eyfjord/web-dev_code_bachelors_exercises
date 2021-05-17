@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style/index.css" />
+    <link rel="stylesheet" class="mainthemes" href="style/johanna.css" />
+    <link rel="stylesheet" class="changeTheme" href="" />
+    <title>Style Tile</title>
+  </head>
+  <body>
+    <main>
+      <nav class="nav-primary">
+        <ul>
+          <p class="logo">Logo</p>
+          <!-- <li onclick="theme(this)" data-theme="johanna">Johanna</li> -->
+          <!-- <li onclick="theme(this)" data-theme="sylvester">Sylvester</li>
+          <li onclick="theme(this)" data-theme="ingimar">Ingimar</li>
+          <li onclick="theme(this) " data-theme="sindri">Sindri</li> -->
+          <button onclick="theme(this)" data-theme="change" class="primary-btn">Change theme</button>
+        </ul>
+      </nav>
+      <section>
+        <div class="colours">
+          <div class="ColourBox-primary"><p>Primary</p></div>
+          <div class="ColourBox-contrast"><p>Contrast</p></div>
+          <div class="ColourBox-accent1"><p>Accent #1</p></div>
+          <div class="ColourBox-accent2"><p>Accent #2</p></div>
+          <div class="ColourBox-cat"><p>CAT</p></div>
+        </div>
+        <div class="E-commerce-icons">
+          <div class="header-primary">
+            <h3>E-commerce icons</h3>
+          </div>
+          <div class="icons">
+            <i class="ic-cart"></i>
+            <i class="ic-bag"></i>
+            <i class="ic-tag"></i>
+            <i class="ic-wallet"></i>
+          </div>
+        </div>
+        <div class="misc-icons">
+          <div class="header-accent1">
+            <h3>Misc icons</h3>
+          </div>
+          <div class="icons">
+            <i class="ic-download"></i>
+            <i class="ic-gear"></i>
+            <i class="ic-info"></i>
+            <i class="ic-undo"></i>
+          </div>
+        </div>
+        <div class="Loader">
+          <div class="header-cat">
+            <h3>Loader</h3>
+          </div>
+          <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <div class="functional_buttons">
+          
+            <div class="header-contrast">
+              <h3>Primary buttons</h3>
+            </div>
+            <div class="flex-row-wrap-space_around">
+              <button class="primary-btn">Primary Button</button>
+              <button class="accent2-btn">Accent #2 Button</button>
+            </div>
+            <div class="header-accent2">
+              <h3>Other buttons</h3>
+            </div>
+            <div class="flex-row-wrap-space_around">
+              <button class="contrast-btn"><i class="ic-sha"></i> Share</button>
+              <button class="accent2-btn"><i class="ic-comment"></i> Comment</button>
+              <button class="primary-btn"><i class="ic-cart"></i> Add to cart</button>
+            </div>
+        </div>
+
+      </section>
+      <section>
+        <article class="Text">
+          <h1>This is nice</h1>
+         <p>
+           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab excepturi autem minus ipsum. Fuga, beatae animi!
+           Quae alias neque iste enim animi repudiandae! Tenetur aspernatur repudiandae natus commodi? Quidem, magnam.
+          </p>
+        </article>
+
+        <form class="newsletter" onsubmit="return false;">
+          <label for="newsletter">Subscribe to our newsletter</label>
+          <div class="input_with_button">
+            <input if="newsletter" placeholder="your@email.com" type="text" />
+            <button class="cat-btn input-btn-active"><i class="ic-check"></i>Subscribe</button>
+          </div>
+        </form>
+
+        <div class="comment_box -accent2">
+          <div class="image">
+            <img src="./photos/me.jpg" alt="" />
+          </div>
+          <p class="comment">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum voluptatum amet blanditiis odit culpa dicta,
+            iste maxime perspiciatis placeat laudantium.
+          </p>
+          <p class="name"><i class="ic-quote_left"></i> Ingimar Eyfjord Smarason</p>
+        </div>
+
+      </section>
+
+      <section class="carousel">
+        <div  class="chev-left" data-direction="left"><i class="ic-chevron_left"></i></div>
+        <div class="carosel_conveyer">
+          <div class="carousel_container" data-position='0'>
+            <div>
+              <img src="./photos/carosel/1.jpg" alt="" />
+            </div>
+            <div>
+            <img src="./photos/carosel/2.jpg" alt="" />
+          </div>
+            <div>
+            <img src="./photos/carosel/3.jpg" alt="" />
+          </div>
+            <div>
+            <img src="./photos/carosel/4.jpg" alt="" />
+          </div>
+            <div>
+            <img src="./photos/carosel/5.jpg" alt="" />
+          </div>
+        </div>
+        <div class="chev-right" data-direction="right"> <i class="ic-chevron_right"></i></div>
+        <div class="dotsNav">
+          <div class="point" data-dot_position='0'></div>
+          <div class="point" data-dot_position='1'></div>
+          <div class="point" data-dot_position='2'></div>
+          <div class="point" data-dot_position='3'></div>
+          <div class="point" data-dot_position='4'></div>
+        </div>
+      </section>
+
+      <div class="Header-image"><img src="./photos/grocery.jpg" alt="" /></div>
+    </main>
+    <script src="index.js"></script>
+  </body>
+</html>
+
+

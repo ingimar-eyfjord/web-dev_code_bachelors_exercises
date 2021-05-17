@@ -1,0 +1,27 @@
+ul {
+  display: flex;
+  flex-direction: row;
+  flex-basis: clamp(375px, 50%, 100%);
+  flex-wrap: wrap;
+}
+li {
+  width: clamp(500px, 500px, 100%);
+  margin: 0 auto 0 auto;
+}
+
+main {
+  display: flex;
+  flex-basis: clamp(350px, 80%, 100%);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+div:nth-child(1) {
+  max-width: clamp(700px, 60%, 100%);
+}
+
+div:nth-child(2) {
+  max-width: clamp(500px, 30%, 30%);
+  height: fit-content;
+}

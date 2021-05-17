@@ -1,0 +1,24 @@
+/* :root {
+  --PrimaryColour: #32343b;
+  --SecondaryColour: #484a54;
+  --AccentColour: #dce8f9;
+  --CATColour: #7ea880;
+  --ContrastColour: #4d664e;
+}
+li,
+p {
+  color: white;
+}
+html {
+  background-color: var(--SecondaryColour);
+}
+
+/* #32323B
+
+#484854
+
+#DCE8F9
+
+#7EA880
+
+#4D664E */

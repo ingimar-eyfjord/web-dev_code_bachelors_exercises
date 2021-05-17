@@ -1,0 +1,30 @@
+:root {
+  /* ----Ingimar */
+  /* --PrimaryColour: #32323b; */
+  --PrimaryColour: hsl(222, 16.7%, 23.5%);
+  /* --SecondaryColour: hsl(200, 17.4%, 23.7%); */
+  --SecondaryColour: #7c899c;
+  --AccentColour: hsl(211, 62%, 86%);
+
+  --CATColour: hsl(96, 100%, 50%);
+  /* --ContrastColour: hsl(286, 97%, 85%); */
+  --ContrastColour: #596a91;
+
+  /* default_colours */
+  --HeaderColour: hsl(23, 47%, 93%);
+  --backgroundColour: #f5f5f5;
+}
+html {
+  background: var(--backgroundColour);
+}
+
+section {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 1rem 0 1rem 0;
+}
+
+nav * {
+  color: var(--HeaderColour);
+}

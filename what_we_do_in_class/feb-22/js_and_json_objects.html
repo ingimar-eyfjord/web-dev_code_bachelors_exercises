@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS and JSON objects</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="signup">
+      <form onsubmit="submit(this); return false">
+        <label for="email">Email</label>
+        <input type="email" name="email" autocomplete="email" id="email" onchange="$.val(this)" />
+        <label for="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          autocomplete="username"
+          minlength="2"
+          maxlength="8"
+          id="name"
+          onchange="$.val(this)"
+        />
+        <!-- <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" /> -->
+        <label for="pwd">Password</label>
+        <input
+          type="password"
+          id="pwd"
+          autocomplete="new-password"
+          onchange="$.val(this)"
+          minlength="8"
+          maxlength="50"
+          name="pwd"
+        />
+        <label for="pwdConf">Confirm password</label>
+        <input
+          type="password"
+          data-validation="password"
+          id="pwdConf"
+          onchange="$.val(this)"
+          minlength="8"
+          maxlength="50"
+          name="pwd"
+          autocomplete="new-password"
+        />
+        <p class="passwordHelper display_none">
+          Should be 8 characters minimum, containing at least one digit, one lower and one upper case characters.
+        </p>
+        <button type="submit">Submit</button>
+      </form>
+      <script src="library.js"></script>
+      <script src="users.js"></script>
+    </div>
+  </body>
+</html>

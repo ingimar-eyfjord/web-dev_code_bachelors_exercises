@@ -1,0 +1,161 @@
+:root {
+  --White_Smoke: hsl(45, 22.2%, 96.6%);
+  --Blue_Night: hsl(222, 16.7%, 23.5%);
+  --Geranium_Red: hsl(1.1, 58.2%, 64.3%);
+  --Big_Stone: hsl(200, 17.4%, 23.7%);
+  --Iridescence: hsl(211, 62%, 86%);
+  --Desert_Paper: hsl(23, 47%, 93%);
+  --Lime: hsl(96, 100%, 50%);
+  --Purple: hsl(286, 97%, 85%);
+  --light_gray: #d3d3d3;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+nav {
+  color: var(--Desert_Paper);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  background-color: var(--Big_Stone);
+  height: 3rem;
+}
+nav p {
+  padding: 0.75rem 0 0 1rem;
+}
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  margin-top: auto;
+  margin-bottom: auto;
+  flex-direction: row;
+  grid-column: 2;
+}
+nav ul li {
+  list-style: none;
+}
+nav ul a {
+  text-decoration: none;
+  color: var(--Desert_Paper);
+  font-size: 1.5rem;
+}
+.MessageBody {
+  width: 100%;
+  height: calc(100vh - 2rem);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 80% 20%;
+}
+.message_Container {
+  width: 100%;
+  height: 100%;
+
+  overflow-y: scroll;
+  background-color: var(--light_gray);
+  display: flex;
+  flex-direction: column;
+}
+.postMessage {
+  padding-top: 0.5rem;
+  background-color: var(--light_gray);
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.postMessage * {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.postMessage button {
+  border-style: none;
+  margin: 0.5rem 0 0 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5rem;
+  background-color: var(--Blue_Night);
+  color: var(--White_Smoke);
+}
+.postMessage > [type="hidden"] {
+  display: none;
+}
+.message_Container > div {
+  margin: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  background-color: var(--Desert_Paper);
+  width: 70%;
+}
+.from {
+  text-align: bottom;
+  display: flex;
+  flex-direction: row;
+}
+.message_Container > div > .from p,
+.message_Container > div > .from h3 {
+  white-space: nowrap;
+  margin: auto 1rem auto 0;
+}
+
+.MessageBody:hover ::-webkit-scrollbar-thumb {
+  background: var(--Big_Stone);
+}
+.InnerMessage {
+  margin-top: 0.5rem;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--Desert_Paper);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--Big_Stone);
+  border-radius: 5px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+}
+#log_in_body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--Desert_Paper);
+  display: flex;
+  flex-direction: column;
+}
+#log_in_body > div {
+  margin: auto;
+  width: 30%;
+}
+#log_in_body > div > form {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+#log_in_body > div > form > button {
+  border-style: none;
+  margin: 0.5rem 0 0 0;
+  padding: 0.5rem;
+  background-color: var(--Blue_Night);
+  color: var(--White_Smoke);
+}

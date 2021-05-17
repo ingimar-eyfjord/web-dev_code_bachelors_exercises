@@ -1,0 +1,18 @@
+:root {
+  --PrimaryColour: #32323b;
+  --SecondaryColour: #484854;
+  --AccentColour: #dce8f9;
+  --CATColour: #7ea880;
+  --ContrastColour: #4d664e;
+  --HeaderColor: white;
+}
+html {
+  background: var(--backgroundColour);
+}
+
+section {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 1rem 0 1rem 0;
+}
