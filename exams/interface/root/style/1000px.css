@@ -1,0 +1,7 @@
+/* Article setup  */
+
+@media screen and (min-width: 1000px) {
+  article {
+    grid-template-columns: 20vw 60vw 20vw;
+  }
+}

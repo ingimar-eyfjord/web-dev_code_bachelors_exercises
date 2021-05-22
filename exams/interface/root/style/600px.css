@@ -1,0 +1,17 @@
+@media screen and (min-width: 600px) {
+  .articlePreview {
+    display: unset;
+
+    grid-template-columns: unset;
+  }
+  .Header-image {
+    grid-column: span 3;
+  }
+  .carousel_container div img {
+    height: 100%;
+    width: auto;
+  }
+  article {
+    grid-template-columns: 10vw 80vw 10vw;
+  }
+}

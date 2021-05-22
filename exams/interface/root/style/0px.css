@@ -1,0 +1,289 @@
+@media screen and (min-width: 0px) {
+  html {
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  h1,
+  h2,
+  h3 {
+    font-size: calc(var(--PSize) * 1.5);
+    font-family: "Abril Fatface", cursive;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+  a {
+    font-family: "Roboto", sans-serif;
+  }
+  p {
+    font-family: "Roboto", sans-serif;
+    font-size: var(--PSize);
+  }
+  body {
+    width: 100%;
+    background-color: var(--background_gradient);
+  }
+
+  /* /// Spinner */
+  /* more loaders https://loading.io/css/ */
+  .lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .landing {
+    margin-top: 75px;
+  }
+  .lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--PrimaryColour);
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+  .lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+  }
+  @keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+  main section {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--white);
+  }
+  nav {
+    background-color: white;
+    top: 0;
+    position: fixed;
+    height: 75px;
+    width: 100%;
+    padding-right: 4rem;
+    z-index: 500;
+    box-shadow: -1px 4px 6px -1px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: -1px 4px 6px -1px rgba(0, 0, 0, 1);
+    -moz-box-shadow: -1px 4px 6px -1px rgba(0, 0, 0, 1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav ul {
+    display: flex;
+    text-align: left;
+    margin-bottom: 0;
+    align-items: center;
+  }
+
+  li {
+    margin-left: 2rem;
+    list-style: none;
+  }
+  li a {
+    text-decoration: none;
+    color: black;
+    font-size: calc(var(--PSize) * 1.5);
+  }
+  nav {
+    max-width: 100vw;
+  }
+  .articlePreview {
+    display: grid;
+    grid-template-columns: 1rem 40vw 30vw calc(30vw - 1rem);
+    margin-bottom: 1rem;
+  }
+  .articlePreview .image {
+    grid-column: 2;
+    grid-row: 1 / span 4;
+    justify-self: center;
+  }
+  .articlePreview .previewText {
+    grid-column: 3 / span 3;
+    grid-row: 3;
+    font-size: 1rem;
+    margin-left: 1rem;
+  }
+  .articlePreview .previewTitle {
+    grid-column: 3 / span 4;
+    grid-row: 1;
+    justify-self: start;
+    margin-left: 1rem;
+  }
+  .articlePreview .tagGroup {
+    grid-column: 3 / span 4;
+    grid-row: 2;
+    display: flex;
+    justify-self: start;
+    margin-left: 1rem;
+  }
+  .articlePreview figcaption {
+    grid-column: 2 / span 3;
+    grid-row: 4;
+  }
+
+  .trending article:not(article:first-of-type) {
+    background-color: white;
+    padding: 1rem;
+    margin: 0 0rem 1rem 0rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    border-radius: 5px;
+    border: solid 2px lightgray;
+  }
+
+  main > .articlePreviewSection > .articlePreview > .image {
+    width: 100%;
+    height: 16vw;
+    background-color: lightgray;
+    background-image: url("../photos/coding-vs-programming-2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .advert .image {
+    height: 30vh;
+    width: calc(100% - 2rem);
+    background-image: url("../photos/manscaped.jpg");
+    margin-left: 2rem;
+    margin-top: 1rem;
+    position: relative;
+  }
+  main > .articlePreviewSection > .articlePreview > .image {
+    width: 40vw;
+    height: 40vw;
+    background-color: lightgray;
+    background-image: url("../photos/coding-vs-programming-2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .trending article:first-of-type .image {
+    background-image: url("../photos/1sttrending.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 35vw;
+    background-color: black;
+    opacity: 0.9;
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .trending article:first-of-type .carousel-inner .carousel-item:nth-of-type(1) .image {
+    background-image: url("../photos/coding-vs-programming-2.jpg");
+  }
+  .trending article:first-of-type .carousel-inner .carousel-item:nth-of-type(2) .image {
+    background-image: url("../photos/1sttrending.jpg");
+  }
+  .trending article:first-of-type .carousel-inner .carousel-item:nth-of-type(3) .image {
+    background-image: url("../photos/macwinlinux2.png");
+  }
+  .trending article:first-of-type {
+    margin-bottom: 1rem;
+  }
+
+  .trending article:first-of-type *:not(.image, span, .categoryTag) {
+    z-index: 0;
+    color: white;
+    text-align: left;
+    margin-left: 2rem;
+  }
+
+  .categoryTag {
+    background-color: black;
+    width: fit-content;
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: small;
+    color: white;
+    margin-right: 1rem;
+  }
+  .trending article:first-of-type *:not(.image, span, .categoryTag) {
+    margin-left: 0;
+  }
+  .carousel-inner {
+    height: calc(100% - 1rem);
+  }
+  .carousel-inner img {
+    height: 100%;
+  }
+  .carousel-item {
+    width: 100%;
+    height: 100%;
+  }
+  .trending article:first-of-type .carousel-item {
+    height: 100%;
+    background-color: black;
+    opacity: 0.9;
+  }
+  #carouselExampleCaptions {
+    width: 95%;
+  }
+  #carouselExampleCaptions .categoryTag {
+    color: black;
+    background-color: var(--white);
+  }
+
+  #carouselExampleCaptions .tagGroup,
+  #carouselExampleCaptions figcaption,
+  #carouselExampleCaptions h2 {
+    margin-left: 3rem;
+  }
+
+  #carouselExampleCaptions figcaption {
+    margin-bottom: 3rem;
+  }
+  .carousel-indicators {
+    z-index: 5000 !important;
+  }
+  .carousel-indicators {
+    margin-right: 0;
+  }
+  .h-Top {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
