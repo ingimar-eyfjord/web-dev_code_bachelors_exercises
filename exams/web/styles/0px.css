@@ -727,6 +727,8 @@ html {
     z-index: 50000000;
     background-color: white;
     margin-top: auto;
+    -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   }
   .twoGird-Item {
     width: 100%;
@@ -774,6 +776,35 @@ html {
   }
   [class*="closeMessage-"] > span {
     cursor: pointer;
+  }
+  .reaction {
+    padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: solid 2px var(--TeamsBackgroundColor);
+  }
+
+  .reaction > .iconContainer {
+    display: block;
+    height: 2.7rem;
+    width: 2.7rem;
+    border-radius: 50%;
+    background-color: var(--White);
+    display: flex;
+    margin: 0.2rem;
+    cursor: pointer;
+  }
+  .reaction div * {
+    margin: 0;
+    padding: 0;
+    line-height: 2rem;
+    font-size: 2rem;
+    margin: auto;
+    color: white;
   }
 }
 
@@ -907,5 +938,30 @@ html {
   }
   .header .menu-icon {
     display: none;
+  }
+}
+
+@-webkit-keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
   }
 }

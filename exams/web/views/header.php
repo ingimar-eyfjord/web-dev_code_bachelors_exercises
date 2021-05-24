@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="/styles/600px.css">
     <link rel="stylesheet" href="/styles/900px.css">
     <link rel="stylesheet" href="/styles/1080px.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -38,12 +38,17 @@
         <ul class="menu">
             <li><a href="/home">Home</a></li>
             <li><a href="/profile">Profile</a></li>
-            <li><a href="/users">Users</a></li>
+            <?php
+            if($_SESSION['admin']){
+            echo '<li><a href="/users">Admins</a></li>';
+            }
+            ?>
             <li><a href="/login">Login</a></li>
             <li><a href="/logout">Logout</a></li>
             <li><a href="/signup">Sign Up</a></li>
         </ul>
     </header>
+
     <input type="hidden" id="Token" value="<?= bin2hex(random_bytes(16))?>">
     <!-- <div class="verifyEmailMessage displayNone">
         <p>Please verify your email, within <span></span> </p>

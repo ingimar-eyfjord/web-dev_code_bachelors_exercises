@@ -40,6 +40,7 @@ h3 {
 }
 a {
   font-family: "Roboto", sans-serif;
+  text-decoration: none;
 }
 p {
   font-family: "Roboto", sans-serif;
@@ -47,11 +48,12 @@ p {
 }
 body {
   width: 100%;
+  min-height: 100vh;
   background-color: var(--background_gradient);
 }
 .FilterBar {
   position: sticky;
-  top: 75px;
+  top: 95px;
   background-color: var(--white);
   height: fit-content;
   box-shadow: -1px 4px 6px -1px rgba(0, 0, 0, 1);
@@ -207,8 +209,6 @@ header {
 .Nav_header .logo {
   display: block;
   float: left;
-  font-size: 2em;
-  padding: 10px 20px;
   text-decoration: none;
 }
 
@@ -286,7 +286,7 @@ header {
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 1000px) {
   .Nav_header li {
     float: left;
   }

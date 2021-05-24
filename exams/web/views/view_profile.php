@@ -97,19 +97,25 @@ if(!isset($_SESSION['username'])){
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <h6 class="mt-3 mb-2 text-primary">Account info</h6>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+
+                        <!-- ? Currently websocket fetch messages by usernames, therefore I'd need to change that first to allow usernames to be changed -->
+
+                        <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="Username">Username</label>
                                 <input name="username" type="text" class="form-control" id="Username"
                                     placeholder="Enter username">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="eMail">Email</label>
                                 <input name="email" type="email" class="form-control" id="eMail"
                                     placeholder="Enter email">
                             </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">

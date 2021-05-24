@@ -8,6 +8,43 @@ header("Location: /login");
     <div id="openMessages">
         <h2>Messages - online: <span id="onlineNow">0</span></h2>
     </div>
+
+    <div class="container posts card">
+        <div class="image_container card-body">
+            <img class="profilePhoto-image"
+                src="<?=glob("content/images/profiles/" . $_SESSION['username'] . ".*")[0]?>">
+        </div>
+        <h3>First posix_times</h3>
+
+
+        <!-- aria-label="..." on the control -->
+        <div class="reaction">
+            <div class="iconContainer">
+                <i class="bi bi-hand-thumbs-up-fill text-primary"></i>
+            </div>
+
+            <div class="iconContainer">
+                <i class="bi bi-hand-thumbs-down-fill text-secondary"></i>
+            </div>
+
+            <div class="iconContainer">
+                <i class="bi bi-emoji-angry-fill text-danger"></i>
+            </div>
+            <div class="iconContainer">
+                <i class="bi bi-emoji-frown-fill text-warning"></i>
+            </div>
+            <div class="iconContainer">
+                <i class="bi bi-emoji-laughing-fill text-warning"></i>
+            </div>
+        </div>
+
+
+        <!-- <div class="input-group">
+            <textarea type="text" class="form-control" placeholder="Comment"></textarea>
+            <button data-towho="${user}" onclick="sendMessage(this)" class="btn btn-primary">Send</button>
+        </div> -->
+    </div>
+
     <div class="container p-0  messageContainer displayNone" style="max-height:100%; height:100%">
         <div class="messaging">
             <div id="userList" class="col-12 col-lg-5 col-xl-3 border-right">

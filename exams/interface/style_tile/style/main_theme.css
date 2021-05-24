@@ -1,0 +1,48 @@
+:root {
+  --PrimaryColour: #dccce7;
+  --AccentColour1: #079cf2;
+  --CATColour: #bb1ea4;
+  --backgroundColour: #f5f5f5;
+  --background_gradient: linear-gradient(
+    145deg,
+    rgba(70, 16, 138, 1) 0%,
+    rgba(61, 7, 95, 1) 48%,
+    rgba(33, 5, 82, 1) 67%,
+    rgba(18, 5, 77, 1) 100%
+  );
+  --White: #ffffff;
+  --text: #000000;
+}
+.btn-primary {
+  color: #fff;
+  background-color: var(--CATColour);
+  border-color: var(--CATColour);
+}
+.btn-primary:hover {
+  color: var(--CATColour);
+  background-color: var(--PrimaryColour);
+  border-color: var(--PrimaryColour);
+}
+.btn-secondary {
+  color: #fff;
+  background-color: var(--AccentColour1);
+  border-color: var(--AccentColour1);
+}
+.btn-secondary:hover {
+  color: var(--CATColour);
+  background-color: var(--PrimaryColour);
+  border-color: var(--PrimaryColour);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  background: var(--background_gradient);
+}
+section {
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 1rem 0 1rem 0;
+}

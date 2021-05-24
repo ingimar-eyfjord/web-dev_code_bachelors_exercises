@@ -1,6 +1,6 @@
 /* Article setup  */
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1300px) {
   article {
     grid-template-columns: 20vw 60vw 20vw;
   }
@@ -40,15 +40,15 @@
   }
   main > .articlePreviewSection {
     display: grid;
-    grid-template-columns: 0vw 35vw 35vw 25vw 0vw;
+    grid-template-columns: 0vw 30vw 30vw 30vw 0vw;
   }
   main > .articlePreviewSection > article {
     grid-template-columns: unset;
     width: 100%;
-    padding: 2rem 2rem 0 2rem;
+    padding: 2rem 2rem 0rem 2rem;
   }
   .previewText {
-    font-size: 1rem;
+    font-size: var(--PSize);
     padding: 0 !important;
     margin: 0 !important;
     margin-top: 1rem !important;
@@ -68,46 +68,44 @@
     padding-left: 2rem;
     padding-right: 2rem;
   }
-  main > .articlePreviewSection article:nth-child(2) {
-    grid-column: 2;
-    grid-row: 3;
-  }
+
   main > .articlePreviewSection article:nth-child(3) {
-    grid-column: 3;
+    grid-column: 2;
     grid-row: 3;
   }
   main > .articlePreviewSection article:nth-child(4) {
-    grid-column: 2;
-    grid-row: 4;
+    grid-column: 3;
+    grid-row: 3;
   }
   main > .articlePreviewSection article:nth-child(5) {
-    grid-column: 3;
+    grid-column: 2;
     grid-row: 4;
   }
   main > .articlePreviewSection article:nth-child(6) {
-    grid-column: 2;
-    grid-row: 5;
+    grid-column: 3;
+    grid-row: 4;
   }
   main > .articlePreviewSection article:nth-child(7) {
-    grid-column: 3;
+    grid-column: 2;
     grid-row: 5;
   }
   main > .articlePreviewSection article:nth-child(8) {
-    grid-column: 2;
-    grid-row: 6;
+    grid-column: 3;
+    grid-row: 5;
   }
   main > .articlePreviewSection article:nth-child(9) {
-    grid-column: 3;
+    grid-column: 2;
     grid-row: 6;
   }
   main > .articlePreviewSection article:nth-child(10) {
-    grid-column: 2;
-    grid-row: 7;
+    grid-column: 3;
+    grid-row: 6;
   }
   main > .articlePreviewSection article:nth-child(11) {
-    grid-column: 3;
-    grid-row: 7;
+    grid-column: 4;
+    grid-row: 5;
   }
+
   .aside {
     grid-column: 4;
     grid-row: 1 / span 6;
@@ -149,23 +147,17 @@
     grid-column: 4;
   }
   .advert .image {
-    height: 30vh;
+    height: 60vh;
     width: calc(100% - 2rem);
     background-image: url("../photos/manscaped.jpg");
     margin-left: 2rem;
     margin-top: 1rem;
     position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
-  .advert .image::after {
-    content: "Get yours today";
-    color: white;
-    font-size: 3rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
-  }
+
   .articlePreviewSection .filtering .filter {
     display: flex;
     justify-content: space-around;
@@ -198,13 +190,15 @@
     padding-left: 2rem;
   }
 
-  .soMeBox {
+  .soMeBox,
+  .articleAside .soMeBox {
     width: calc(100% - 2rem);
     margin-left: 2rem;
     display: flex;
   }
 
-  .soMeBox i {
+  .soMeBox i,
+  .articleAside .soMeBox i {
     font-size: 3rem;
     width: 5rem;
     height: 100%;
@@ -214,10 +208,12 @@
     border-right: solid 2px white;
     margin-right: 2rem;
   }
-  .soMeBox p {
+  .soMeBox p,
+  .articleAside .soMeBox p {
     margin: 0;
   }
-  .action {
+  .action,
+  .articleAside .soMeBox .action {
     margin: auto;
     text-align: left;
     margin-right: 2rem;
@@ -248,7 +244,12 @@
     flex-direction: row;
     align-items: center;
   }
-  figcaption > span:first-of-type::before {
+  #carouselExampleCaptions .tagGroup,
+  #carouselExampleCaptions figcaption,
+  #carouselExampleCaptions h2 {
+    margin-left: 3rem;
+  }
+  /* figcaption > span:first-of-type::before {
     content: "";
     height: 50px;
     width: 50px;
@@ -258,7 +259,7 @@
     background-size: cover;
     border-radius: 50%;
     margin-right: 1rem;
-  }
+  } */
   article figcaption {
     /* text-align: center; */
     margin-bottom: 1rem;
@@ -314,19 +315,20 @@
   }
   .trending article:not(article:first-of-type) h3 {
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 1;
     margin-left: 2rem;
   }
   .trending article:not(article:first-of-type) .tagGroup {
     grid-column: 2;
-    grid-row: 1;
+    grid-row: 3;
     margin-left: 2rem;
+    margin-bottom: 1rem;
     height: fit-content;
     color: white;
   }
   .trending article:not(article:first-of-type) figcaption {
     grid-column: 2;
-    grid-row: 3;
+    grid-row: 2;
     margin-left: 2rem;
     text-align: left;
   }
@@ -369,7 +371,7 @@
     background-position: center;
     background-size: cover;
     height: 100%;
-    width: 40vw;
+    width: 100%;
     background-color: black;
     opacity: 0.9;
     position: relative;
@@ -409,13 +411,19 @@
   main .article {
     padding-top: 100px;
     display: grid;
-    grid-template-columns: 5vw 50vw 25vw;
+    grid-template-columns: 5vw 50vw 2.5vw 20vw 2.5vw;
   }
   main .article article {
     width: 90%;
   }
   main .article .aside {
-    grid-column: 3;
+    grid-column: 4;
     grid-row: 1;
+  }
+  .form-subscribe {
+    width: 100%;
+    grid-row: 2;
+    grid-column: 4;
+    padding-left: 2rem;
   }
 }
