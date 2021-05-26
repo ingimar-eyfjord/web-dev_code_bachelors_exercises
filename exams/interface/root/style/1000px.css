@@ -102,8 +102,43 @@
     grid-row: 6;
   }
   main > .articlePreviewSection article:nth-child(11) {
-    grid-column: 4;
-    grid-row: 5;
+    grid-column: 2;
+    grid-row: 7;
+  }
+  main > .articlePreviewSection article:nth-child(12) {
+    grid-column: 3;
+    grid-row: 7;
+  }
+  main > .articlePreviewSection article:nth-child(13) {
+    grid-column: 2;
+    grid-row: 8;
+  }
+  main > .articlePreviewSection article:nth-child(14) {
+    grid-column: 3;
+    grid-row: 8;
+  }
+  main > .articlePreviewSection article:nth-child(15) {
+    grid-column: 2;
+    grid-row: 9;
+  }
+  main > .articlePreviewSection article:nth-child(16) {
+    grid-column: 3;
+    grid-row: 9;
+  }
+  main > .articlePreviewSection article:nth-child(17) {
+    grid-column: 2;
+    grid-row: 10;
+  }
+
+  main > .articlePreviewSection .pagination {
+    grid-column: 1 / span 3;
+    grid-row: 11;
+    justify-self: center;
+  }
+  main > .articlePreviewSection .quiz_article {
+    grid-column: 1 / span 4;
+    grid-row: 4;
+    justify-self: center;
   }
 
   .aside {

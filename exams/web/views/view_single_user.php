@@ -22,22 +22,13 @@ try{
       $q->bindValue(':user_uuid', $id);
       $q->execute();
       $user = $q->fetch();
-
       if(!$user){
         header("Location: /users");
       }
-   
     }catch(PDOException $ex){
       echo $ex;
     }
-
     ?>
-
-
-
-
-
-
 <div class="usersOfSystem">
     <span class="profilePhoto-colour"></span>
     <div class="profilePhoto-container">

@@ -7,7 +7,7 @@
     height: 80px;
   }
   .landing {
-    margin-top: 95px;
+    margin-top: 1rem;
   }
   .lds-ellipsis div {
     position: absolute;
@@ -103,8 +103,11 @@
 
   .articlePreview {
     display: grid;
-    grid-template-columns: 1rem 40vw 30vw calc(30vw - 1rem);
+    grid-template-columns: 1rem 40vw 30vw calc(30vw - 2rem);
     margin-bottom: 1rem;
+
+    max-width: 100%;
+    overflow-x: hidden;
   }
   .articlePreview .image {
     grid-column: 2;
@@ -112,24 +115,27 @@
     justify-self: center;
   }
   .articlePreview .previewText {
-    grid-column: 3 / span 3;
+    grid-column: 3 / span 2;
     grid-row: 3;
     font-size: 1rem;
     margin-left: 1rem;
   }
   .articlePreview .previewTitle {
-    grid-column: 3 / span 4;
+    grid-column: 3 / span 2;
     grid-row: 1;
     justify-self: start;
     margin-left: 1rem;
   }
   .articlePreview .tagGroup {
-    grid-column: 3 / span 4;
+    grid-column: 3 / span 2;
     grid-row: 2;
     display: flex;
     justify-self: start;
     margin-left: 1rem;
   }
+  /* .articlePreview .categoryTag {
+    display: none;
+  } */
   .articlePreview .tagGroup p:first-child::after {
     content: "";
     margin: 0 1rem 0 1rem;
@@ -325,7 +331,7 @@
 
   main > .articlePreviewSection > .articlePreview > .image {
     width: 100%;
-    height: 16vw;
+    grid-row: 1 / span 3;
     background-color: lightgray;
     background-image: url("../photos/coding-vs-programming-2.jpg");
     background-size: cover;
@@ -484,11 +490,13 @@
   }
   .comment {
     margin-top: 1rem;
+    margin-left: 2rem;
     padding: 0.5rem;
     border: 1px solid var(--CATColour);
     border-radius: 2px;
     background-color: var(--PrimaryColour);
   }
+
   .articlePreviewSection .filtering .filter {
     display: flex;
     flex-direction: row;
@@ -510,6 +518,12 @@
     border: 2px solid var(--text);
   }
 
+  main > .articlePreviewSection .pagination {
+    grid-column: 1;
+    justify-self: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
   /* dashboard section */
 
   .dashboard {
@@ -1027,5 +1041,81 @@
   }
   .login_box_container {
     margin-top: 100px;
+  }
+  .hero {
+    width: 100%;
+    height: 40vh;
+    margin-top: 80px;
+    background: var(--background_gradient);
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+  }
+  .hero svg {
+    position: absolute;
+    opacity: 0.1;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 600%;
+  }
+  .hero h3 {
+    color: white;
+    font-family: "Roboto", sans-serif;
+    margin-left: 5rem;
+    margin-top: 5rem;
+  }
+
+  .hero p:first-of-type {
+    margin-bottom: 2rem;
+    margin-top: 2.5rem;
+    margin-right: 2rem;
+  }
+  .hero p {
+    padding-left: 5rem;
+    z-index: 50;
+    color: white;
+  }
+  .hero button {
+    margin-left: 5rem;
+    margin-top: 1rem;
+    z-index: 50;
+    top: 70%;
+    padding: 0 2rem 0 2rem;
+    font-size: calc(var(--PSize) * 1.2);
+    position: absolute;
+  }
+  .filtering .active {
+    background-color: white !important;
+    color: var(--text) !important;
+  }
+  .filter_scnd {
+    justify-content: flex-start !important;
+    padding: 1rem 0;
+  }
+  .filter_scnd .btn-group {
+    margin-left: 2rem;
+    width: 15%;
+  }
+  .filter_scnd h3 {
+    font-family: "Roboto", sans-serif;
+  }
+  .filter_scnd .input-group {
+    width: 25%;
+    margin-left: 2rem;
+  }
+  .quiz_article {
+    border: 2px solid #f5f5f5;
+    border-radius: 5px;
+    padding: 2rem;
+  }
+  .quiz_article .form-check {
+    font-size: 2rem;
+  }
+  .categoryTag {
+    display: none !important;
+  }
+  .articlePreview figcaption {
+    margin-top: 1rem;
   }
 }
