@@ -26,7 +26,8 @@
   </head>
   <body>
     <header class="Nav_header mb-3">
-      <a href="" class="logo"></a>
+      <a href="index.html"><img class="logo" src="icons/black.svg" alt="LogoImage" /></a>
+
       <input class="menu-btn" type="checkbox" id="menu-btn" />
       <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
       <ul class="menu">
@@ -127,60 +128,122 @@
           </p>
         </article>
 
-        <div class="commentSection mt-3">
-          <div class="header h-small down">
-            <h2>Write a comment</h2>
-            <div class="line"></div>
+        <div class="commentSection mt-3 container">
+          <div class="row">
+            <div class="col-sm-12 col-lg-6">
+              <div class="header h-small down">
+                <h2>Write a comment</h2>
+                <div class="line"></div>
+              </div>
+
+              <div class="input-group send-message">
+                <textarea
+                  id="send-message"
+                  type="text"
+                  class="form-control mt-3"
+                  placeholder="Write a comment"
+                ></textarea>
+                <button class="btn btn-primary mt-3">Send</button>
+              </div>
+
+              <div class="comment">
+                <p class="commentText">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam voluptates quae placeat nam non
+                  commodi.
+                </p>
+                <p class="sent"></p>
+                <figcaption><span>Jane Doe</span>&nbsp;|&nbsp;<span>21-May-2020</span></figcaption>
+              </div>
+
+              <div class="comment">
+                <p class="commentText">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam voluptates quae placeat nam non
+                  commodi.
+                </p>
+                <p class="sent"></p>
+                <figcaption><span>Jane Doe</span>&nbsp;|&nbsp;<span>21-May-2020</span></figcaption>
+              </div>
+
+              <div class="comment">
+                <p class="commentText">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam voluptates quae placeat nam non
+                  commodi.
+                </p>
+                <p class="sent"></p>
+                <figcaption><span>Jane Doe</span>&nbsp;|&nbsp;<span>21-May-2020</span></figcaption>
+              </div>
+
+              <div class="comment">
+                <p class="commentText">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam voluptates quae placeat nam non
+                  commodi.
+                </p>
+                <p class="sent"></p>
+                <figcaption><span>Jane Doe</span>&nbsp;|&nbsp;<span>21-May-2020</span></figcaption>
+              </div>
+
+              <div class="comment">
+                <p class="commentText">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam voluptates quae placeat nam non
+                  commodi.
+                </p>
+                <p class="sent"></p>
+                <figcaption><span>Jane Doe</span>&nbsp;|&nbsp;<span>21-May-2020</span></figcaption>
+              </div>
+
+              <a style="text-align: center"><p class="mb-3 mt-3 text-decoration-underline">Show more</p></a>
+            </div>
+            <div class="Recommended_articles col-sm-12 col-lg-6 d-flex flex-column">
+              <div class="header h-small down">
+                <h2>Recommended articles</h2>
+                <div class="line"></div>
+              </div>
+              <article class="articlePreview mt-3 ms-4 card">
+                <div class="image"></div>
+                <div class="tagGroup">
+                  <p>Redis Extension</p>
+                  <p class="categoryTag">REDIS</p>
+                  <p class="categoryTag">VSExtensions</p>
+                </div>
+                <h2 class="previewTitle">Why VS code?</h2>
+                <p class="previewText">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                <figcaption>
+                  <span>Admin</span> &nbsp;|&nbsp; <span>21-May-2020</span> &nbsp;|&nbsp;<span>4 comments</span>
+                  &nbsp;|&nbsp;<span>10 Shares</span>
+                </figcaption>
+              </article>
+              <article class="articlePreview mt-3 ms-4 card">
+                <div class="image"></div>
+                <div class="tagGroup">
+                  <p>Redis Extension</p>
+                  <p class="categoryTag">REDIS</p>
+                  <p class="categoryTag">VSExtensions</p>
+                </div>
+                <h2 class="previewTitle">Why VS code?</h2>
+                <p class="previewText">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                <figcaption>
+                  <span>Admin</span> &nbsp;|&nbsp; <span>21-May-2020</span> &nbsp;|&nbsp;<span>4 comments</span>
+                  &nbsp;|&nbsp;<span>10 Shares</span>
+                </figcaption>
+              </article>
+              <article class="articlePreview mt-3 ms-4 card">
+                <div class="image"></div>
+                <div class="tagGroup">
+                  <p>Redis Extension</p>
+                  <p class="categoryTag">REDIS</p>
+                  <p class="categoryTag">VSExtensions</p>
+                </div>
+                <h2 class="previewTitle">Why VS code?</h2>
+                <p class="previewText">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                <figcaption>
+                  <span>Admin</span> &nbsp;|&nbsp; <span>21-May-2020</span> &nbsp;|&nbsp;<span>4 comments</span>
+                  &nbsp;|&nbsp;<span>10 Shares</span>
+                </figcaption>
+              </article>
+            </div>
           </div>
 
-          <div class="input-group send-message">
-            <textarea id="send-message" type="text" class="form-control mt-3" placeholder="Write a comment"></textarea>
-            <button class="btn btn-primary mt-3">Send</button>
-          </div>
-
-          <div class="comment">
-            <p class="commentText">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam voluptates quae placeat nam non commodi.
-            </p>
-            <p class="sent"></p>
-            <figcaption><span>Jane Doe</span>&nbsp;|&nbsp;<span>21-May-2020</span></figcaption>
-          </div>
-
-          <div class="comment">
-            <p class="commentText">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam voluptates quae placeat nam non commodi.
-            </p>
-            <p class="sent"></p>
-            <figcaption><span>Jane Doe</span>&nbsp;|&nbsp;<span>21-May-2020</span></figcaption>
-          </div>
-
-          <div class="comment">
-            <p class="commentText">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam voluptates quae placeat nam non commodi.
-            </p>
-            <p class="sent"></p>
-            <figcaption><span>Jane Doe</span>&nbsp;|&nbsp;<span>21-May-2020</span></figcaption>
-          </div>
-
-          <div class="comment">
-            <p class="commentText">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam voluptates quae placeat nam non commodi.
-            </p>
-            <p class="sent"></p>
-            <figcaption><span>Jane Doe</span>&nbsp;|&nbsp;<span>21-May-2020</span></figcaption>
-          </div>
-
-          <div class="comment">
-            <p class="commentText">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam voluptates quae placeat nam non commodi.
-            </p>
-            <p class="sent"></p>
-            <figcaption><span>Jane Doe</span>&nbsp;|&nbsp;<span>21-May-2020</span></figcaption>
-          </div>
-
-          <a style="text-align: center"><p class="mb-3 mt-3 text-decoration-underline">Show more</p></a>
-
-          <div class="container quiz_article d-flex flex-column justify-content-center align-items-center">
+          <div class="col-12 container quiz_article d-flex flex-column justify-content-center align-items-center">
             <h3>Take the quiz</h3>
             <div class="mb-3">
               <p>QUESTION 1/5</p>
@@ -273,7 +336,7 @@
         </div>
       </section>
 
-      <footer class="footer-95942">
+      <footer class="footer">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-md-8">

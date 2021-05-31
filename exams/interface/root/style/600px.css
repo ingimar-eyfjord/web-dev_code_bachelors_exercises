@@ -37,4 +37,9 @@
   .categoryTag {
     display: block !important;
   }
+  .logo {
+    height: auto;
+    width: 25%;
+    margin-left: 1rem;
+  }
 }

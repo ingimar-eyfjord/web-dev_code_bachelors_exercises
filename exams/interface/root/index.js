@@ -23,14 +23,14 @@ function myFunction() {
     }
   });
 }
-
 document.addEventListener("DOMContentLoaded", click);
 function click() {
-  const articles = document.querySelectorAll("article");
+  const articles = document.querySelectorAll(".articlePreview, .carousel-item, .topArticle");
   articles.forEach((e) => {
     e.addEventListener("click", loadPage);
   });
-}
-function loadPage() {
-  window.open("article.html");
+
+  function loadPage() {
+    window.open("article.html");
+  }
 }
