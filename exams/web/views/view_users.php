@@ -3,22 +3,26 @@
 if(!isset($_SESSION['username'])){
     header("Location: /login");
 }
+if(isset($_SESSION['admin'])){
+    if($_SESSION['admin'] !== true){
+        echo '<li><a href="/users">Admins</a></li>';
+    }
+}
 ?>
 <main class="usersMain">
     <div id="usersOfSystem">
-        <h3>Users of this platform</h3>
         <?php
-    require_once("{$_SERVER['DOCUMENT_ROOT']}/service/db.php");
+    require_once("{$_SERVER['DOCUMENT_ROOT']}/api/models/dbc.php");
     try{
-        $stmt = $db->prepare('SELECT username, first_name, last_name, email, age, active FROM users ORDER BY age DESC');
+        $stmt = $db->prepare('SELECT user_id, username, first_name, last_name, email, age, active FROM users ORDER BY age DESC');
         $stmt->execute();
         $rows = $stmt->fetchAll();
         foreach ($rows as $value) {
 ?>
-        <div class="usersOfSystem">
+        <div class="usersOfSystem" onclick="redirect(`<?=$value->user_id?>`)">
             <span class="profilePhoto-colour"></span>
             <div class="profilePhoto-container">
-                <img class="profilePhoto-image" src="/content/images/profiles/<?=$value->username?>.jpg"
+                <img class="profilePhoto-image img-<?=$value->username?>" src=""
                     aria-alt="<?=$value->username?>'s profile photo">
             </div>
             <div class="userStats">
@@ -41,7 +45,18 @@ if(!isset($_SESSION['username'])){
                 </div>
             </div>
         </div>
+        <script>
+        tryImages("<?=$value->username?>")
+
+        function tryImages(username) {
+            const images = document.querySelectorAll(`.img-${username}`)
+            images.forEach(img => {
+                img.src = `services/find_image/${username}`;
+            })
+        }
+        </script>
         <?php
+        
         }
     }catch(PDOException $ex){
         echo "something went wrong";
@@ -49,15 +64,14 @@ if(!isset($_SESSION['username'])){
     ?>
     </div>
     <div>
-        <h3>Fake users inside sqlite database</h3>
+        <h3>Search for a user</h3>
         <?php
 require_once("view_search.php");
 ?>
-        <div class="PaginationBtn">
+        <!-- <div class="PaginationBtn">
             <button data-page="0" data-dir="decr" onclick="pagination(this)" type="button">&lsaquo;</button>
             <button data-page="0" data-dir="incr" onclick="pagination(this)" type="button">&rsaquo;</button>
-        </div>
-
+        </div> -->
         <script>
         async function delete_user(element) {
 
@@ -92,13 +106,25 @@ require_once("view_search.php");
             console.log(data)
             parent.remove();
         }
+
+
+        function tryImages(username) {
+            const images = document.querySelectorAll(`.img-${username}`)
+            images.forEach(img => {
+                img.src = `services/find_image/${username}`;
+            })
+        }
         </script>
 
 
 
     </div>
 </main>
-
+<script>
+function redirect(userID) {
+    location.replace(`user/${userID}`);
+}
+</script>
 
 <!-- // Bottom of the page -->
 <?php  require_once(__DIR__.'./footer.php'); ?>

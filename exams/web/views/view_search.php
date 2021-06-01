@@ -1,9 +1,13 @@
 <?php
 ?>
-<!-- onblur="debounce(200)" -->
 <form class="searchForm" onsubmit="return false">
-    <input type="text" id="search" name="search_for" onclick="debounce(0)" oninput="debounce(500)">
-
+    <div class="input-group">
+        <span class="input-group-text btn-secondary" id="basic-addon1">
+            <i style="font-size: 1rem" class="bi bi-search"></i></span>
+        <input type="text" class="form-control" placeholder="Search for a user" aria-label="Search for a user"
+            aria-describedby="basic-addon1" id="search" name="search_for" onclick="debounce(0)"
+            oninput="debounce(500)" />
+    </div>
     <div id="searchResult" class="searchResult hidden">
         <div class="paginationComm">
             <p>Page <span id="page_num"> 1</span> out of <span id="num_pages"></span> | <span id="num_result"></span>
@@ -14,10 +18,8 @@
             </div>
         </div>
         <div class="list"></div>
-        <!-- <div class="hideSearch" onclick="debounce(0)"></div> -->
     </div>
 </form>
-
 <script>
 function pagination(element) {
     if (element.dataset.dir === "incr") {
@@ -40,13 +42,12 @@ function pagination(element) {
     const value = s.value
     show_results(value)
 }
-
 let timer;
 
 function debounce(time) {
     const s = document.querySelector("#search")
     const value = s.value
-    const sibling = s.nextElementSibling
+    const sibling = document.querySelector("#searchResult")
     if (event.target.value.length >= 2) {
         if (timer) {
             clearTimeout(timer)
@@ -59,23 +60,26 @@ function debounce(time) {
         }, time)
     }
 }
-
 async function show_results(value) {
     const page = document.querySelector('[data-page]').dataset.page
     const body = {
         search_for: value,
         page: page
     }
-    let conn = await fetch(`/search`, {
-        'method': "POST",
-        'body': JSON.stringify(body)
-    })
-    if (!conn.ok) {
-        alert("no");
-        return
-    }
-    const data = await conn.json()
-    reveal_data(data)
+    await $.ajax({
+        type: "POST",
+        url: "/search",
+        data: JSON.stringify(body),
+        accepts: 'application/json; charset=utf-8',
+        success: function(response) {
+            reveal_data(response)
+        },
+        error: function(result) {
+            console.log(result)
+        }
+    });
+    // const data = await conn.json()
+    // reveal_data(data)
 }
 
 function reveal_data(data) {
@@ -85,10 +89,12 @@ function reveal_data(data) {
     delete data[0]['num_rows'];
     document.querySelector("#num_result").textContent = number;
     document.querySelector("#num_pages").textContent = Math.ceil(parseInt(number) / 20);
-
     data.forEach(e => {
         const comp =
-            `<div class="searchData"><a href="/single_user/${e.user_uuid}"><p class="singleClick">${e.user_name} ${e.user_last_name}</p><a></div>`
+            `<div class="searchData card"><a href="/user/${e.user_id}">
+            <p class="singleClick">Username: ${e.username} </p>
+            <p>First Name: ${e.first_name}</p><a>
+            </div>`
         res.insertAdjacentHTML("beforeend", comp)
     })
 }

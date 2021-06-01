@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" style="--colour:#DC143C;--stWidth:33%">
+<?php 
+    $csrf_token = bin2hex(random_bytes(25));
+    $_SESSION['csrf'] = $csrf_token;
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -19,9 +23,8 @@
         integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous">
     </script>
     <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
-
     <link rel="stylesheet" href="/libraries/OverlayScrollbars.min.css" crossorigin="anonymous">
-    <script src="libraries/jquery.overlayScrollbars.min.js"></script>
+    <script src="/libraries/jquery.overlayScrollbars.min.js"></script>
     <link rel="stylesheet" href="/styles/0px.css">
     <link rel="stylesheet" href="/styles/600px.css">
     <link rel="stylesheet" href="/styles/900px.css">
@@ -30,7 +33,6 @@
 </head>
 
 <body>
-
     <header class="header mb-3">
         <a href="" class="logo">Navigation</a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
@@ -39,8 +41,10 @@
             <li><a href="/home">Home</a></li>
             <li><a href="/profile">Profile</a></li>
             <?php
-            if($_SESSION['admin']){
-            echo '<li><a href="/users">Admins</a></li>';
+            if(isset($_SESSION['admin'])){
+                if($_SESSION['admin'] === true){
+                    echo '<li><a href="/users">Admins</a></li>';
+                }
             }
             ?>
             <li><a href="/login">Login</a></li>
@@ -48,33 +52,32 @@
             <li><a href="/signup">Sign Up</a></li>
         </ul>
     </header>
-
     <input type="hidden" id="Token" value="<?= bin2hex(random_bytes(16))?>">
     <!-- <div class="verifyEmailMessage displayNone">
         <p>Please verify your email, within <span></span> </p>
     </div> -->
+    <!--?! Setup token for PHP controllers -->
     <script>
+    $.ajaxSetup({
+        headers: {
+            'csrf-token': '<?=$csrf_token?>'
+        }
+    });
     // window.addEventListener("DOMContentLoaded", verifyEmail)
     let date = undefined;
     async function verifyEmail() {
-        let conn = await fetch(`/signup/verify/ask`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json" // sent request
-                // "Accept":       "application/json"   // expected data sent back
+        await $.ajax({
+            dataType: "json",
+            url: "/signup/verify/ask",
+            success: function(response) {
+                startClock();
             },
-            cache: "no-cache"
-        })
-        let data = await conn.text()
-        if (!conn.ok) {
-            console.log(data)
-            return
-        } else {
-            date = JSON.parse(data)
-            startClock()
-        }
+            error: function(result) {
+                date = JSON.parse(data)
+                return;
+            }
+        });
     }
-
     let verify;
 
     function startClock() {

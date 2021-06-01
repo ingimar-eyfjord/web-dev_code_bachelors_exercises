@@ -30,7 +30,7 @@ try {
                 // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
                 //Content
                 $mail->isHTML(true);                                  //Set email format to HTML
-                $mail->Subject = 'Here is the subject';
+                $mail->Subject = $subject;
                 $mail->Body    =  html_entity_decode($send_email_body);
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
                 $mail->send();

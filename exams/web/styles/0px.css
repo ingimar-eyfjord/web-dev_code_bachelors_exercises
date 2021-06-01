@@ -226,7 +226,7 @@ html {
   /* search */
 
   .searchForm {
-    width: 30%;
+    width: 60%;
     padding: 1rem;
   }
   .searchForm input {
@@ -245,14 +245,15 @@ html {
   }
   .list {
     height: fit-content;
-    width: 20%;
+    width: 100%;
   }
   .hidden {
     display: none;
   }
   .searchData {
+    padding: 2rem;
     display: flex;
-    align-content: space-around;
+    flex-direction: column;
   }
   .user_details {
     font-size: 2rem;
@@ -276,7 +277,7 @@ html {
   }
 
   [class*="-image"] {
-    background-image: url("content/images/android-chrome-512x512.png");
+    background-image: url("../content/images/profiles/avatar.png");
     background-size: contain;
     background-position: center;
   }
@@ -310,6 +311,11 @@ html {
     height: fit-content;
   }
 
+  #usersOfSystem {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
   .usersOfSystem {
     display: grid;
     justify-content: center;
@@ -324,7 +330,8 @@ html {
     width: fit-content;
     height: fit-content;
     margin: 2rem;
-    min-width: 35%;
+    min-width: 45%;
+    cursor: pointer;
   }
   .usersOfSystem > div:nth-child(2) {
     align-self: center;
@@ -414,6 +421,14 @@ html {
     cursor: pointer;
     font-size: 1rem;
     background-color: var(--Primary_Blue);
+  }
+  .custom-file-upload_image {
+    background-color: white;
+    border: unset;
+    display: inline-block;
+  }
+  .custom-file-upload_image i {
+    font-size: 2rem;
   }
   input[type="file"] {
     display: none;
@@ -704,6 +719,16 @@ html {
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
+    pointer-events: none !important;
+  }
+  li {
+    list-style: none;
+  }
+  .messageContainer {
+    pointer-events: none !important;
+  }
+  .messaging * {
+    pointer-events: all;
   }
   .twoGrids {
     overflow: hidden;
@@ -765,6 +790,39 @@ html {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     font-weight: bold;
+    z-index: 500000;
+  }
+  .user_settings {
+    position: relative;
+  }
+  .badge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(20%, -30%);
+  }
+  .messageGroup {
+    margin-bottom: 4rem;
+  }
+  .post-group {
+    display: flex;
+    flex-direction: column;
+    z-index: 700;
+  }
+
+  .PostImageContainer {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+  }
+  #createPost {
+    position: relative;
+  }
+
+  .postImage {
+    align-self: center;
+    height: 500px;
+    width: auto;
   }
   [class*="closeMessage-"] {
     width: 100%;
@@ -805,6 +863,13 @@ html {
     font-size: 2rem;
     margin: auto;
     color: white;
+  }
+
+  /* posts */
+  .postAvatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
   }
 }
 

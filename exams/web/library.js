@@ -19,10 +19,12 @@ const _$ = {
     document.querySelector(element).disable = false;
   },
   val: function (element) {
+    console.log(element.name);
     switch (element.name) {
       // this email regex does not work
       case "email":
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const re =
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (re.test(element.value.toLowerCase())) {
           element.dataset.valid = true;
         } else {
@@ -49,9 +51,14 @@ const _$ = {
           _$.one("#strength").textContent = "Weak";
           _$.one("html").style = "--colour:#DC143C;--stWidth:33%";
         }
-
-        // Password check
         break;
+      case "Phone":
+        const DanishRegex = new RegExp("[0-9]{8}");
+        if (!DanishRegex.test(element.value)) {
+          element.dataset.valid = false;
+        } else {
+          element.dataset.valid = true;
+        }
       default:
         console.log("ok");
     }

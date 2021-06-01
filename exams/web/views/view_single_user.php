@@ -1,58 +1,84 @@
 <?php  require_once(__DIR__.'/header.php');
 /// Main part pf the page
-
 if(!isset($_SESSION['username'])){
     header("Location: /users");
 }
 if(!isset($id)){
     header("Location: /users");
 }
-if(strlen($id) != 32){
-    header("Location: /users");
-}
 if(!ctype_alnum($id)){
     header("Location: /users");
 }
-
 try{
-      $db = new PDO("sqlite:db/users.db");
-      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-      $q = $db->prepare('SELECT user_name, user_last_name, user_email, user_phone FROM users WHERE user_uuid = :user_uuid');
-      $q->bindValue(':user_uuid', $id);
-      $q->execute();
-      $user = $q->fetch();
-      if(!$user){
+    require_once("{$_SERVER['DOCUMENT_ROOT']}/api/models/dbc.php");
+    $stmt = $db->prepare('SELECT user_id, username, first_name, last_name, email, age, active, phone FROM users WHERE user_id = :user_id');
+    $stmt->bindValue(':user_id', $id);
+    $stmt->execute();
+    $user = $stmt->fetch();
+    if(!$user){
         header("Location: /users");
-      }
+    }
     }catch(PDOException $ex){
-      echo $ex;
+        echo $ex;
+      echo "something went wrong, please try again";
     }
     ?>
 <div class="usersOfSystem">
     <span class="profilePhoto-colour"></span>
     <div class="profilePhoto-container">
-        <img class="profilePhoto-image" src="/content/images/profiles/<?=$value->username?>.jpg"
-            aria-alt="<?=$value->username?>'s profile photo">
+        <img class="profilePhoto-image" src="/content/images/profiles/<?=$user->username?>.jpg"
+            aria-alt="<?=$user->username?>'s profile photo">
     </div>
     <div class="userStats">
         <div>
-            <p><?= $user['user_name']?> <?= $user['user_last_name']?></p>
+            <p><?= $user->first_name?> <?= $user->last_name?> age <?= $user->age?></p>
         </div>
         <div class="status">
             <div style="border-left: none;">
                 <p>Phone</p>
-                <p><?= $user['user_phone']?>
+                <p><?= $user->phone?>
                 </p>
             </div>
             <div>
-                <p>Email</p>
+                <p>Active status</p>
                 <p>
-                    <?= $user['user_email']?>
+                    <?= $user->active == 1 ? "Active" : "Inactive"?>
                 </p>
             </div>
+
         </div>
         <div class="email">
-            <p>Could seed the users to get more info maybe</p>
+            <?= $user->email?>
         </div>
+        <button class="btn btn-danger mt-3" style="width:100%" onclick="deactivate()">Deactivate my
+            profile</button>
     </div>
+    <script>
+    async function deactivate() {
+        let txt;
+        let r = confirm("This will deactivate the account, are you sure?");
+        if (r !== true) {
+            return;
+        }
+        await $.ajax({
+            type: "POST",
+            url: "/profile/deactivate",
+            data: JSON.stringify({
+                id: `<?=$user->user_id?>`
+                email: `<?=$user->user_id?>`
+            }),
+            success: function(response) {
+                console.log(response)
+                // window.location.replace("/logout");
+            },
+            error: function(result) {
+                console.log(result)
+            }
+        });
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+        const image = document.querySelectorAll(".profilePhoto-image")
+        image.src = `services/find_image/<?=$user->username?>`;
+    })
+    </script>
+    <?php  require_once(__DIR__.'./footer.php'); ?>

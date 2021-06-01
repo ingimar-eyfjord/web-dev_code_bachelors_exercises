@@ -3,48 +3,150 @@ if(!isset($_SESSION['username'])){
 header("Location: /login");
 }
 ?>
-
 <main class="content " style="max-height:100vh">
     <div id="openMessages">
         <h2>Messages - online: <span id="onlineNow">0</span></h2>
     </div>
+    <script>
+    async function CreatePost(form) {
+        event.preventDefault();
+        const img = form.querySelectorAll("img")
 
-    <div class="container posts card">
-        <div class="image_container card-body">
-            <img class="profilePhoto-image"
-                src="<?=glob("content/images/profiles/" . $_SESSION['username'] . ".*")[0]?>">
-        </div>
-        <h3>First posix_times</h3>
+        let images = []
+        const bar = new Promise((resolve, reject) => {
+            img.forEach(e => {
+                // const source = await fetch(e.src)
+                // const blob = await source.blob()
+                fetch(e.src)
+                    .then(response => response.blob())
+                    .then(data => images.push(new File([data], 'dot.png', data)));
+            });
+        });
 
+        console.log(images)
+        const Data = formToJSON(form)
+        Data.images = images
 
-        <!-- aria-label="..." on the control -->
-        <div class="reaction">
-            <div class="iconContainer">
-                <i class="bi bi-hand-thumbs-up-fill text-primary"></i>
-            </div>
+        Data.user = `<?=$_SESSION['username']?>`
+        Data.postID = `<?= bin2hex(random_bytes(16))?>`
 
-            <div class="iconContainer">
-                <i class="bi bi-hand-thumbs-down-fill text-secondary"></i>
-            </div>
+        socket.send(JSON.stringify({
+            intent: 'createPost',
+            postData: Data
+        }))
+        // console.log(form.File.value)
+        // let photo = form.File.files[0];
+        // console.log(photo)
+        // let formData = new FormData();
 
-            <div class="iconContainer">
-                <i class="bi bi-emoji-angry-fill text-danger"></i>
-            </div>
-            <div class="iconContainer">
-                <i class="bi bi-emoji-frown-fill text-warning"></i>
-            </div>
-            <div class="iconContainer">
-                <i class="bi bi-emoji-laughing-fill text-warning"></i>
-            </div>
-        </div>
-
-
-        <!-- <div class="input-group">
-            <textarea type="text" class="form-control" placeholder="Comment"></textarea>
-            <button data-towho="${user}" onclick="sendMessage(this)" class="btn btn-primary">Send</button>
-        </div> -->
+        // formData.append("photo", photo);
+        // fetch('/upload/image', {method: "POST", body: formData});
+    }
+    </script>
+    <div class="createPost card container">
+        <form id="createPost" onsubmit="CreatePost(this); return false;">
+            <p id="postContentEdit">
+                Create a post</p>
+            <div class="PostImageContainer displayNone"></div>
+            <textarea id="PostTextEditor" name="postText" placeholder="Write new post" class="input-group"></textarea>
+            <label class="custom-file-upload_image">
+                <input type="file" onchange="loadFile(event)" name="File" id="fileToUpload">
+                <i class="bi bi-camera"></i>
+            </label>
+            <button class="btn btn-primary">Post</button>
+        </form>
     </div>
-
+    <div class="container d-flex flex-column align-items-center card">
+        <div class="col-10">
+            <div class=" post">
+                <div class="post-heading d-flex flex-row align-items-center">
+                    <div class="pull-left postAvatar me-3 mb-3">
+                        <img src="https://bootdey.com/img/Content/user_1.jpg" class="postAvatar"
+                            alt="user profile image">
+                    </div>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b>Ryan Haywood</b></a>
+                            made a post.
+                        </div>
+                        <h6 class="text-muted time">1 minute ago</h6>
+                    </div>
+                </div>
+                <div class="post-description">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit saepe labore dolores asperiores
+                        accusamus velit corporis, dolorem cumque alias quas, sapiente modi minus consequatur optio nemo
+                        ab. Rerum, vel saepe.</p>
+                    <div class="stats">
+                        <a href="#" class="btn btn-default stat-item">
+                            <i class="bi bi-hand-thumbs-up"></i>2
+                        </a>
+                        <a href="#" class="btn btn-default stat-item">
+                            <i class="bi bi-share"></i>12
+                        </a>
+                    </div>
+                </div>
+                <div class="post-footer">
+                    <div class="input-group">
+                        <input class="form-control mb-5" placeholder="Add a comment" type="text">
+                        <span class="input-group-addon">
+                            <a href="#"><i class="bi bi-pencil-square"></i></a>
+                        </span>
+                    </div>
+                    <ul class="comments-list">
+                        <li class="comment">
+                            <div class="post-heading d-flex flex-row align-items-center">
+                                <a class="pull-left" href="#">
+                                    <img class="postAvatar me-3" src="https://bootdey.com/img/Content/user_1.jpg"
+                                        alt="avatar">
+                                </a>
+                                <div class="comment-body ">
+                                    <div class="comment-heading d-flex flex-direction-row">
+                                        <h4 class="user me-3">Gavino Free</h4>
+                                        <p class="time ">5 minutes ago</p>
+                                    </div>
+                                    <p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="comments-list">
+                        <li class="comment">
+                            <div class="post-heading d-flex flex-row align-items-center">
+                                <a class="pull-left" href="#">
+                                    <img class="postAvatar me-3" src="https://bootdey.com/img/Content/user_3.jpg"
+                                        alt="avatar">
+                                </a>
+                                <div class="comment-body ">
+                                    <div class="comment-heading d-flex flex-direction-row">
+                                        <h4 class="user me-3">Ryan Haywood</h4>
+                                        <p class="time">3 minutes ago</p>
+                                    </div>
+                                    <p>Relax my friend</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="comment ">
+                            <div class="post-heading d-flex flex-row align-items-center">
+                                <a class="pull-left" href="#">
+                                    <img class="postAvatar me-3" src="https://bootdey.com/img/Content/user_2.jpg"
+                                        alt="avatar">
+                                </a>
+                                <div class="comment-body ">
+                                    <div class="comment-heading d-flex flex-direction-row">
+                                        <h4 class="user me-3">Gavino Free</h4>
+                                        <p class="time">3 minutes ago</p>
+                                    </div>
+                                    <p>Ok, cool.</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container p-0  messageContainer displayNone" style="max-height:100%; height:100%">
         <div class="messaging">
             <div id="userList" class="col-12 col-lg-5 col-xl-3 border-right">
@@ -61,17 +163,13 @@ header("Location: /login");
     </div>
     </div>
 </main>
-
 <script>
 let currentUser = undefined
 // let host = 'wss://exam-websocket.herokuapp.com/';
-
 let host = 'ws://localhost:3000'
 let socket = new WebSocket(host);
-
 socket.onopen = async function() {
     await getUsers()
-
     const token = document.querySelector("#Token").value
     let login = {
         Token: token,
@@ -79,7 +177,6 @@ socket.onopen = async function() {
         username: `<?= $_SESSION['username']?>`
     }
     socket.send(JSON.stringify(login));
-
     socket.onmessage = function(e) {
         const data = JSON.parse(e.data)
         if (data.intent === "old-messages") {
@@ -108,23 +205,12 @@ socket.onopen = async function() {
             loggedIn(data)
         }
     };
-
-
     // if (socket.readyState === WebSocket.CLOSED) {
     //    // Do your stuff...
     // }
-
-
-
-
-
     // let element = document.querySelector(".chat-messages");
     // element.scrollTop = element.scrollHeight;
-
-
 }
-
-
 
 function loggedIn(data) {
     const loggedInUsers = Object.values(data.users)
@@ -132,7 +218,6 @@ function loggedIn(data) {
     elseS.forEach(e => {
         e.textContent = "Offline"
     })
-
     let onlineNow = loggedInUsers.length - 1
     $("#onlineNow").text(onlineNow)
     loggedInUsers.forEach(e => {
@@ -163,7 +248,7 @@ function displayMessages(data, oldOrNew) {
             const message = `
             <div class="chat-message-right pb-4">
             <div>
-            <img src="<?=glob("content/images/profiles/" . $_SESSION['username'] . ".*")[0]?>" class="rounded-circle mr-1" alt="${e.username}"
+            <img class="rounded-circle mr-1 img-${e.username}" alt="${e.username}"
             width="80" height="80">
             <div class="text-muted small text-nowrap mt-2">${moment(e.date).fromNow()}</div>
             </div>
@@ -197,8 +282,8 @@ function displayMessages(data, oldOrNew) {
                 const messageContainer = document.querySelector(`.messageList-${data.identifier}`)
                 messageContainer.insertAdjacentHTML("beforeend", message)
             }
-            tryImages(e.username)
         }
+        tryImages(e.username)
     })
 
     if (oldOrNew === "new-message") {
@@ -209,10 +294,7 @@ function displayMessages(data, oldOrNew) {
     instance.scroll({
         y: "100%"
     });
-
 }
-
-
 let timer;
 let TimeoutTimer;
 
@@ -235,8 +317,6 @@ function typing(element) {
             }))
         }
     }, 2000)
-
-
     if (TimeoutTimer) {
         clearTimeout(TimeoutTimer)
     }
@@ -247,15 +327,20 @@ function typing(element) {
             toWhom: currentUser
         }))
     }, 30000)
+
+    const keyCode = event.keyCode
+    timer = setTimeout(function() {
+        if (keyCode === 13) {
+            element.parentElement.querySelector(".btn").click()
+        }
+    }, 100)
 }
 
 function displayUserIsTyping(data) {
-
     const arr = ["<?= $_SESSION['username']?>", data.username]
     arr.sort();
     const ident = arr.join("-");
     ///Need here
-
     if (data.toWhom === `<?= $_SESSION['username']?>`) {
         const typing = document.querySelector(`.${data.username}-Typing`)
         const element = document.querySelector(`.typing-${data.username}`);
@@ -283,35 +368,31 @@ function tryImages(username) {
         img.src = `services/find_image/${username}`;
     })
 }
-
-
 async function getUsers() {
     await $.ajax({
         // dataType: "json",
+        accepts: 'application/json; charset=utf-8',
         url: "/users/getAll",
         success: function(response) {
-            let data = JSON.parse(response)
             const users = document.querySelector("#userList")
-
-
-            data.forEach(e => {
+            Object.values(response).forEach(e => {
                 if (e.username === `<?= $_SESSION['username']?>`) {
                     return;
                 }
                 const message = `
-                <a onclick="activateUserChat('${e.username}')" data-name="${e.username}" class="messageUser list-group-item list-group-item-action border-0">
+                <a data-message_user="${e.user_id}" onclick="activateUserChat('${e.username} , ${e.user_id}')" data-name="${e.username}" class="messageUser list-group-item list-group-item-action border-0">
                 <div id="userSettings" data-userPreference='${e.username}' data-user_id='${e.user_id}' onclick="changeUserPreference(this)">
                 <span class="dot"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
                 </div>
-                <ul class="displayNone user_setting_list-${e.username}" class="list-group">
-                <li class="list-group-item">Call</li>
+                <ul class="displayNone user_settings user_setting_list-${e.username}" class="list-group">
+                <li class="list-group-item">Call (Not implemented)</li>
                 <!-- <a href="tel:+496170961709">Call</a>-->
-                <li onclick="TakeMeToProfile('${e.username}')" class="list-group-item">More info</li>
-                <li onclick="blockUser('${e.username}')" class="list-group-item list-group-item-danger">Block</li>
+                <li onclick="TakeMeToProfile('${e.username}')" class="list-group-item">Info (Not implemented)</li>
+                <li onclick="blockUser('${e.user_id}')" class="list-group-item list-group-item-danger">Block</li>
                 </ul>
-                               <div class="badge displayNone have_message-${e.username} bg-success float-right">0</div>
+                               <div class="badge displayNone have_message-${e.username} bg-success float-bottom">0</div>
                                  <div class="d-flex align-items-start">
                                      <img class="rounded-circle mr-1 img-${e.username}" alt="${e.username}"
                                      width="80" height="80">
@@ -334,44 +415,38 @@ async function getUsers() {
             console.log(result)
         }
     });
-
-
     $(function() {
         //The passed argument has to be at least a empty object or a object with your desired options
-
         //set the scroll-offset to 50 on both axis.
-
         var instance = $("#userList").overlayScrollbars({}).overlayScrollbars();
-
-
     });
 
 }
 
-function activateUserChat(user) {
-
+function activateUserChat(data) {
+    let split = data.split(" , ");
+    let user = split[0]
+    let id = split[1]
     const arr = ["<?= $_SESSION['username']?>", user]
     arr.sort();
     const ident = arr.join("-");
-
-
     currentUser = user
     const messageContainer = document.querySelector(".messaging")
-
+    console.log(user)
     const container = document.querySelector(`.container-${ident}`)
     if (container === null) {
-        messageContainer.insertAdjacentHTML("beforeend", `   <div class="card twoGrids container-${ident}" style="height:40%">
+        messageContainer.insertAdjacentHTML("beforeend", `   <div class="card twoGrids container-${ident}" data-message_user="${id}" style="height:50%">
         <div class="closeMessage-${ident}"><span onclick="closeMessage('${ident}')" >&#10006;</span> </div>
         <div class="twoGird-Item" style="position:relative">
-        <div class="py-2 px-4 border-bottom d-none d-lg-block" style="height:100%">
+        <div class="py-2 px-4 border-bottom d-none d-lg-block" style="height:90%">
         <div class="position-relative" style="height:100%">
-            <div class="chat-messages messageList-${ident} p-4" style="height:100%">
+            <div class="chat-messages messageList-${ident} p-4" style="height:90%">
             </div>
         </div>
         </div>
-        <div style="bottom:0; height:95px">
-        <div class="flex-grow-0 py-3 px-4 border-top">
-        <div class="input-group">
+        <div style="height:fit-content">
+        <div class=" py-3 px-4 border-top">
+        <div class="input-group messageGroup">
             <textarea type="text" class="form-control" onkeyup="typing(this)"
                 onkeydown="typing(this)" placeholder="Type your message"></textarea>
             <button data-towho="${user}" onclick="sendMessage(this)" class="btn btn-primary">Send</button>
@@ -379,7 +454,6 @@ function activateUserChat(user) {
          </div>
         </div>
         </div>`)
-
         socket.send(JSON.stringify({
             intent: 'old-messages',
             count: 20,
@@ -387,31 +461,48 @@ function activateUserChat(user) {
             username: `<?= $_SESSION['username']?>`
         }))
     }
-
-
 }
 
 function changeUserPreference(element) {
     const list = element.nextElementSibling
     list.classList.remove("displayNone")
 }
-
 document.addEventListener("click", function(e) {
     if (e.target.id !== "userSettings" && !e.target.classList.contains("dot")) {
         $("[class*='user_setting_list']").addClass("displayNone")
     }
 })
 
-function TakeMeToProfile(element) {
-
-}
-
-function blockUser(element) {
+function TakeMeToProfile(element) {}
 
 
-}
-
+function blockUser(id) {
+    let txt;
+    let r = confirm("This will block the user, and you won't be able to see them or their messages?");
+    if (r !== true) {
+        return;
+    }
+    const body = {
+        user_id: <?= $_SESSION['user_id']?>,
+        whom: id
+    }
+    const changeRequest = $.post("/users/block", JSON.stringify(body)).done(function(data) {
+        // _$.one('#message').innerHTML = data;
+        // _$.one('#message').style.color = "green";
+        // return
+        const remove = $(`[data-message_user="${id}"]`)
+        Object.values(remove).forEach(e => {
+            e.remove();
+        })
+    }).fail(function(data) {
+        console.log(data)
+        // _$.one('#message').innerHTML = data;
+        // _$.one('#message').style.color = "red";
+        // return
+    });
+};
 $("#openMessages").click(function(element) {
+    console.log("called")
     $(this).addClass("displayNone")
     $(".messageContainer").removeClass("displayNone")
 })
@@ -432,8 +523,16 @@ function closeMessage(which) {
 function closeMessageList() {
     $(".messageContainer").addClass("displayNone")
     $("#openMessages").removeClass("displayNone")
-
 }
+const loadFile = function(event) {
+    const img = document.createElement("img")
+    img.src = URL.createObjectURL(event.target.files[0]);
+    img.onload = function() {
+        URL.revokeObjectURL(output.src) // free memory
+    }
+    $(".PostImageContainer").removeClass("displayNone")
+    img.classList.add("postImage")
+    $(".PostImageContainer").prepend(img)
+};
 </script>
-
 <?php  require_once(__DIR__.'./footer.php'); 

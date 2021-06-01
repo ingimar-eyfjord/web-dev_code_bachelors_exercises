@@ -3,10 +3,8 @@ if(!isset($_SESSION['username'])){
     header("Location: /login");
         }
 ?>
-
 <div class="container mt-3">
     <legend>Your Profile information</legend>
-
     <div class="row gutters">
         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
             <div class="card h-100">
@@ -29,19 +27,15 @@ if(!isset($_SESSION['username'])){
                             <p class="font-weight-bold mb-0">Email</p>
                             <p><?=$_SESSION['email']?></p>
                         </div>
-
                         <form action="profile/upload/image" id="uploadImage" method="post"
                             enctype="multipart/form-data">
-
                             <label class="custom-file-upload">
                                 <input type="file" onchange="loadFile(event)" name="File" id="fileToUpload">
                                 Click here to upload or change your profile picture
                             </label>
                             <input class="mt-3" type="submit" value="Confirm upload" name="submit">
                             <img class="mt-3" id="output" />
-
                         </form>
-
                         <button class="btn btn-danger mt-3" style="width:100%" onclick="deactivate()">Deactivate my
                             profile</button>
                     </div>
@@ -49,7 +43,6 @@ if(!isset($_SESSION['username'])){
             </div>
         </div>
         <form onsubmit="ChangeProfileInfo(this); return false;" class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-
             <div class="card h-100">
                 <div class="card-body">
                     <div class="alert alert-info" role="alert">
@@ -60,7 +53,6 @@ if(!isset($_SESSION['username'])){
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <h6 class="mb-2 text-primary">Personal Details</h6>
                         </div>
-
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="first_name">Full Name</label>
@@ -68,7 +60,6 @@ if(!isset($_SESSION['username'])){
                                     placeholder="Enter full name">
                             </div>
                         </div>
-
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="last_name">Last Name</label>
@@ -76,9 +67,6 @@ if(!isset($_SESSION['username'])){
                                     placeholder="Enter full name">
                             </div>
                         </div>
-
-
-
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="phone">Phone</label>
@@ -89,7 +77,7 @@ if(!isset($_SESSION['username'])){
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="age">Age</label>
-                                <input name="age" class="form-control" id="age" placeholder="Age">
+                                <input name="age" type="number" class="form-control" id="age" placeholder="Age">
                             </div>
                         </div>
                     </div>
@@ -97,7 +85,6 @@ if(!isset($_SESSION['username'])){
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <h6 class="mt-3 mb-2 text-primary">Account info</h6>
                         </div>
-
                         <!-- ? Currently websocket fetch messages by usernames, therefore I'd need to change that first to allow usernames to be changed -->
 
                         <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -115,7 +102,6 @@ if(!isset($_SESSION['username'])){
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
@@ -146,7 +132,6 @@ if(!isset($_SESSION['username'])){
         </form>
     </div>
 </div>
-
 <script>
 async function deactivate() {
     let txt;
@@ -154,44 +139,21 @@ async function deactivate() {
     if (r !== true) {
         return;
     }
-    let conn = await fetch('/profile/deactivate', {
-        method: "POST",
-        cache: 'no-cache'
+    await $.ajax({
+        type: "POST",
+        url: "/profile/deactivate",
+        data: JSON.stringify({
+            id: "<?= $_SESSION['user_id'] ?>",
+            email: "<?=$_SESSION['email']?>"
+
+        }),
+        success: function(response) {
+            window.location.replace("/logout");
+        },
+        error: function(result) {
+            console.log(result)
+        }
     });
-    if (conn.ok) {
-        window.location.replace("/logout");
-    }
-
-}
-
-// async function like() {
-//     event.preventDefault()
-//     let conn = await fetch('/post/1/1', {
-//         method: "POST"
-//     })
-//     // if( conn.status != 200 ){ alert("something went wrong") }
-//     if (!conn.ok) {
-//         alert("sorry, we are updating our servers")
-//         return
-//     }
-//     const parent = event.target.parentNode;
-//     parent.querySelector(".like_btn").classList.add("displayNone")
-//     parent.querySelector(".dislike_btn").classList.remove("displayNone")
-// }
-
-async function dislike() {
-    event.preventDefault()
-    // let conn = await fetch('/post/1/0', {
-    //     method: "POST"
-    // })
-    // if( conn.status != 200 ){ alert("something went wrong") }
-    // if (!conn.ok) {
-    //     alert("sorry, we are updating our servers")
-    //     return
-    // }
-    const parent = event.target.parentElement
-    parent.querySelector(".dislike_btn").classList.add("displayNone")
-    parent.querySelector(".like_btn").classList.remove("displayNone")
 }
 const loadFile = function(event) {
     const output = document.getElementById('output');
@@ -200,10 +162,8 @@ const loadFile = function(event) {
         URL.revokeObjectURL(output.src) // free memory
     }
 };
-
 async function ChangeProfileInfo(form) {
     const Json = formToJSON(form)
-    console.log(Json)
     const changeRequest = await $.post("/profile/changeInfo", JSON.stringify(Json)).done(function(data) {
         console.log(data)
         $('#message').text(data);
@@ -214,6 +174,4 @@ async function ChangeProfileInfo(form) {
     });
 }
 </script>
-
-
 <?php  require_once(__DIR__.'./footer.php'); ?>

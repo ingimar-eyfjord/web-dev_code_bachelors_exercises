@@ -6,7 +6,7 @@
 }
 </style>
 
-<form class="flexColumn container log_sign_form mt-3" action="/login" method="POST">
+<form class="flexColumn container log_sign_form mt-3" onsubmit="LogIN(this); return false;">
     <legend>Login</legend>
     <div class="card h-100">
 
@@ -24,26 +24,18 @@
             <input class="form-control" type="text" placeholder="Password" id="floatingInputP" name="Password" required>
             <label for="floatingInputP">Password</label>
         </div>
-        <?php
-            if(isset($errorMessage)){
-                if(urldecode($errorMessage) == "This account is deactivated"){
-                    ?>
-        <button type="button" class="btn btn-primary m-3" onclick="reactivate(this); return false;">Reactivate
+
+
+
+        <button type="button" id="reactivateBtn" class="btn btn-primary m-3 displayNone"
+            onclick="reactivate(this); return false;">Reactivate
             account</button>
-        <?php
-                }else{
-                    ?>
-        <button class="btn btn-primary m-3">Login</button>
-        <?php
-              }
-            }
-            if(!isset($errorMessage)){
-                ?>
-        <button class="btn btn-primary m-3">Login</button>
-        <?php
-            }
-            ?>
+
+        <button id="loginBtn" class="btn btn-primary m-3">Login</button>
+
+
         <a href="/login/reset-password" class="text-center m-3">Forgot your password? Click here to reset it.</a>
+        <h3 class="m-3" id="message" style="text-align:center;"></h3>
     </div>
 </form>
 
@@ -54,6 +46,19 @@
 
 
 <script>
+async function LogIN(form) {
+    const Json = formToJSON(form)
+    const LoginRequest = await $.post("/login", JSON.stringify(Json)).done(function(data) {
+        window.location.replace("/home");
+    }).fail(function(data) {
+        if (data.responseText == "This account is deactivated") {
+            $("#reactivateBtn").removeClass("displayNone")
+            $("#loginBtn").addClass("displayNone")
+        }
+        $('#message').text(data.responseText);
+        $('#message').css("color", "red");
+    });
+}
 async function reactivate(button) {
     const form = document.querySelector("#ReactivateForm")
     const emailOrUsername = form.querySelector('[name="emailOrUsername"]')
