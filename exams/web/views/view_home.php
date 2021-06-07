@@ -44,6 +44,19 @@ header("Location: /login");
     }
     </script>
     <div class="createPost card container">
+        <div class="alert alert-warning" role="alert">
+            <p class="font-weight-bold"> This feature is not implemented yet</p>
+            <p>
+                This feature is still in progress
+                (posts), I will attempt to make it complete before the Exam. Please take a look at my documentation
+                (document submitted in wiseflow) to see
+                how the messaging functionality works (the biggest part of the application so far).
+            </p>
+            <p>
+                The websocket server is created in Node.js and hosted on Heroku, it works well, if it crashes please use
+                Nodemon to run it locally, or contact me at 22397370 (it shouldn't crash though, I'm just paranoid)
+            </p>
+        </div>
         <form id="createPost" onsubmit="CreatePost(this); return false;">
             <p id="postContentEdit">
                 Create a post</p>
@@ -56,7 +69,7 @@ header("Location: /login");
             <button class="btn btn-primary">Post</button>
         </form>
     </div>
-    <div class="container d-flex flex-column align-items-center card">
+    <div class="container d-flex flex-column align-items-center card post_container">
         <div class="col-10">
             <div class=" post">
                 <div class="post-heading d-flex flex-row align-items-center">
@@ -165,8 +178,8 @@ header("Location: /login");
 </main>
 <script>
 let currentUser = undefined
-// let host = 'wss://exam-websocket.herokuapp.com/';
-let host = 'ws://localhost:3000'
+let host = 'ws://exam-websocket.herokuapp.com/';
+// let host = 'ws://localhost:3000'
 let socket = new WebSocket(host);
 socket.onopen = async function() {
     await getUsers()
@@ -230,14 +243,19 @@ function loggedIn(data) {
 }
 
 function sendMessage(button) {
+
     const element = button.parentElement.querySelector("textarea")
     const message = element.value
-    socket.send(JSON.stringify({
-        username: `<?= $_SESSION['username']?>`,
-        message: message,
-        intent: 'chat',
-        toWhom: button.dataset.towho
-    }))
+    if (element.value.length != 0) {
+        if (element.value.trim() != "") {
+            socket.send(JSON.stringify({
+                username: `<?= $_SESSION['username']?>`,
+                message: message,
+                intent: 'chat',
+                toWhom: button.dataset.towho
+            }))
+        }
+    }
     element.value = ""
 }
 
@@ -371,9 +389,10 @@ function tryImages(username) {
 async function getUsers() {
     await $.ajax({
         // dataType: "json",
-        accepts: 'application/json; charset=utf-8',
+        // accepts: 'application/json; charset=utf-8',
         url: "/users/getAll",
         success: function(response) {
+
             const users = document.querySelector("#userList")
             Object.values(response).forEach(e => {
                 if (e.username === `<?= $_SESSION['username']?>`) {

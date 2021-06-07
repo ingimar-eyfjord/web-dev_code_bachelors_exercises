@@ -58,7 +58,7 @@
 async function signUp(element) {
     const inputs = $('input')
     const body = formToJSON(inputs)
-    const changeRequest = await $.post("/signup", JSON.stringify(body)).done(function(data) {
+    $.post("/signup", JSON.stringify(body)).done(function(data) {
         _$.one('#message').innerHTML = data;
         _$.one('#message').style.color = "green";
         return

@@ -55,7 +55,7 @@ async function LogIN(form) {
             $("#reactivateBtn").removeClass("displayNone")
             $("#loginBtn").addClass("displayNone")
         }
-        $('#message').text(data.responseText);
+        $('#message').text("There has been an error");
         $('#message').css("color", "red");
     });
 }
@@ -72,3 +72,9 @@ async function reactivate(button) {
 }
 </script>
 <?php  require_once(__DIR__.'./footer.php'); ?>
+
+<script>
+alert(
+    "Copy this for default admin login for examiners username: DEFADMIN, email: ingimar.web.dev@gmail.com, Password: Zp3Lrq8cLBRfzPS"
+)
+</script>

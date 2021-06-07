@@ -50,8 +50,10 @@ try{
         <div class="email">
             <?= $user->email?>
         </div>
-        <button class="btn btn-danger mt-3" style="width:100%" onclick="deactivate()">Deactivate my
+        <button class="btn btn-danger mt-3" style="width:100%" onclick="deactivate()">Deactivate
             profile</button>
+        <p style="text-align:center">User will get email notification about the profile being deactivated</p>
+        <h3 class="m-3" id="message" style="text-align:center;"></h3>
     </div>
     <script>
     async function deactivate() {
@@ -64,15 +66,23 @@ try{
             type: "POST",
             url: "/profile/deactivate",
             data: JSON.stringify({
-                id: `<?=$user->user_id?>`
-                email: `<?=$user->user_id?>`
+                id: `<?=$user->user_id?>`,
+                email: `<?=$user->email?>`,
+                user_firstName: `<?= $user->first_name?>`
             }),
             success: function(response) {
-                console.log(response)
-                // window.location.replace("/logout");
+                _$.one('#message').innerHTML = response;
+                _$.one('#message').style.color = "green";
+
+                if (`<?=$user->user_id?>` == `<?=$_SESSION['user_id']?>`) {
+                    window.location.replace("/logout");
+                }
+                return
             },
             error: function(result) {
-                console.log(result)
+                _$.one('#message').innerHTML = "There has been an error";
+                _$.one('#message').style.color = "red";
+                return
             }
         });
     }
