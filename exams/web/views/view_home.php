@@ -8,55 +8,71 @@ header("Location: /login");
         <h2>Messages - online: <span id="onlineNow">0</span></h2>
     </div>
     <script>
+    function uploadImages(body) {
+        return Promise.resolve(
+            $.ajax({
+                type: 'POST',
+                url: '/posts/images',
+                data: JSON.stringify(body),
+                success: function(response) {
+                    return response;
+                },
+                error: function(response) {
+                    return response;
+                }
+            })
+        );
+    }
+
+
     async function CreatePost(form) {
         event.preventDefault();
         const img = form.querySelectorAll("img")
-
-        let images = []
-        const bar = new Promise((resolve, reject) => {
-            img.forEach(e => {
-                // const source = await fetch(e.src)
-                // const blob = await source.blob()
-                fetch(e.src)
-                    .then(response => response.blob())
-                    .then(data => images.push(new File([data], 'dot.png', data)));
-            });
-        });
-
-        console.log(images)
         const Data = formToJSON(form)
-        Data.images = images
-
-        Data.user = `<?=$_SESSION['username']?>`
         Data.postID = `<?= bin2hex(random_bytes(16))?>`
+        Data.user = `<?=$_SESSION['username']?>`
+        // const images = await createImages(img, Data.postID)
+        // console.log(await images)
+        // const images = createImages(img, Data.postID, function(val) {
+        //     console.log(val)
+        // })
+        let images = []
+        for (const [i, e] of img.entries()) {
+            const response = await fetch(e.src)
+            const blob = await response.blob()
+            images.push(blob)
+        }
 
-        socket.send(JSON.stringify({
-            intent: 'createPost',
-            postData: Data
-        }))
-        // console.log(form.File.value)
-        // let photo = form.File.files[0];
-        // console.log(photo)
-        // let formData = new FormData();
+        images = await Promise.all(images.map((f, index) => {
+            return readAsDataURL(f, index)
+        }));
 
-        // formData.append("photo", photo);
-        // fetch('/upload/image', {method: "POST", body: formData});
+        function readAsDataURL(file, index) {
+            return new Promise((resolve, reject) => {
+                let fileReader = new FileReader();
+                fileReader.onload = function() {
+                    return resolve({
+                        data: fileReader.result,
+                        name: `${Data.postID}_${index}`,
+                        size: file.size,
+                        type: file.type
+                    });
+                }
+                fileReader.readAsDataURL(file);
+            })
+        }
+        const upload = await uploadImages(await images)
+        if (upload == "Files uploaded") {
+            socket.send(JSON.stringify({
+                intent: 'createPost',
+                postData: Data
+            }))
+        }
+
     }
     </script>
     <div class="createPost card container">
-        <div class="alert alert-warning" role="alert">
-            <p class="font-weight-bold"> This feature is not implemented yet</p>
-            <p>
-                This feature is still in progress
-                (posts), I will attempt to make it complete before the Exam. Please take a look at my documentation
-                (document submitted in wiseflow) to see
-                how the messaging functionality works (the biggest part of the application so far).
-            </p>
-            <p>
-                The websocket server is created in Node.js and hosted on Heroku, it works well, if it crashes please use
-                Nodemon to run it locally, or contact me at 22397370 (it shouldn't crash though, I'm just paranoid)
-            </p>
-        </div>
+
         <form id="createPost" onsubmit="CreatePost(this); return false;">
             <p id="postContentEdit">
                 Create a post</p>
@@ -69,96 +85,9 @@ header("Location: /login");
             <button class="btn btn-primary">Post</button>
         </form>
     </div>
-    <div class="container d-flex flex-column align-items-center card post_container">
-        <div class="col-10">
-            <div class=" post">
-                <div class="post-heading d-flex flex-row align-items-center">
-                    <div class="pull-left postAvatar me-3 mb-3">
-                        <img src="https://bootdey.com/img/Content/user_1.jpg" class="postAvatar"
-                            alt="user profile image">
-                    </div>
-                    <div class="pull-left meta">
-                        <div class="title h5">
-                            <a href="#"><b>Ryan Haywood</b></a>
-                            made a post.
-                        </div>
-                        <h6 class="text-muted time">1 minute ago</h6>
-                    </div>
-                </div>
-                <div class="post-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit saepe labore dolores asperiores
-                        accusamus velit corporis, dolorem cumque alias quas, sapiente modi minus consequatur optio nemo
-                        ab. Rerum, vel saepe.</p>
-                    <div class="stats">
-                        <a href="#" class="btn btn-default stat-item">
-                            <i class="bi bi-hand-thumbs-up"></i>2
-                        </a>
-                        <a href="#" class="btn btn-default stat-item">
-                            <i class="bi bi-share"></i>12
-                        </a>
-                    </div>
-                </div>
-                <div class="post-footer">
-                    <div class="input-group">
-                        <input class="form-control mb-5" placeholder="Add a comment" type="text">
-                        <span class="input-group-addon">
-                            <a href="#"><i class="bi bi-pencil-square"></i></a>
-                        </span>
-                    </div>
-                    <ul class="comments-list">
-                        <li class="comment">
-                            <div class="post-heading d-flex flex-row align-items-center">
-                                <a class="pull-left" href="#">
-                                    <img class="postAvatar me-3" src="https://bootdey.com/img/Content/user_1.jpg"
-                                        alt="avatar">
-                                </a>
-                                <div class="comment-body ">
-                                    <div class="comment-heading d-flex flex-direction-row">
-                                        <h4 class="user me-3">Gavino Free</h4>
-                                        <p class="time ">5 minutes ago</p>
-                                    </div>
-                                    <p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="comments-list">
-                        <li class="comment">
-                            <div class="post-heading d-flex flex-row align-items-center">
-                                <a class="pull-left" href="#">
-                                    <img class="postAvatar me-3" src="https://bootdey.com/img/Content/user_3.jpg"
-                                        alt="avatar">
-                                </a>
-                                <div class="comment-body ">
-                                    <div class="comment-heading d-flex flex-direction-row">
-                                        <h4 class="user me-3">Ryan Haywood</h4>
-                                        <p class="time">3 minutes ago</p>
-                                    </div>
-                                    <p>Relax my friend</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="comment ">
-                            <div class="post-heading d-flex flex-row align-items-center">
-                                <a class="pull-left" href="#">
-                                    <img class="postAvatar me-3" src="https://bootdey.com/img/Content/user_2.jpg"
-                                        alt="avatar">
-                                </a>
-                                <div class="comment-body ">
-                                    <div class="comment-heading d-flex flex-direction-row">
-                                        <h4 class="user me-3">Gavino Free</h4>
-                                        <p class="time">3 minutes ago</p>
-                                    </div>
-                                    <p>Ok, cool.</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+
+    <div id="postsContainer" class="container d-flex flex-column align-items-center  post_container">
+
     </div>
     <div class="container p-0  messageContainer displayNone" style="max-height:100%; height:100%">
         <div class="messaging">
@@ -178,8 +107,8 @@ header("Location: /login");
 </main>
 <script>
 let currentUser = undefined
-let host = 'ws://exam-websocket.herokuapp.com/';
-// let host = 'ws://localhost:3000'
+// let host = 'ws://exam-websocket.herokuapp.com/';
+let host = 'ws://localhost:3000'
 let socket = new WebSocket(host);
 socket.onopen = async function() {
     await getUsers()
@@ -189,7 +118,11 @@ socket.onopen = async function() {
         intent: "login",
         username: `<?= $_SESSION['username']?>`
     }
+    let getPosts = {
+        intent: "get_posts",
+    }
     socket.send(JSON.stringify(login));
+    socket.send(JSON.stringify(getPosts));
     socket.onmessage = function(e) {
         const data = JSON.parse(e.data)
         if (data.intent === "old-messages") {
@@ -217,12 +150,64 @@ socket.onopen = async function() {
         if (data.intent === "Disconnected") {
             loggedIn(data)
         }
+        if (data.intent === "new-post") {
+            displayNewPost(data)
+        }
+        if (data.intent === "new_comment") {
+            displayNewComment(data)
+        }
+        if (data.intent === "all-posts") {
+            displayPosts(data)
+        }
     };
     // if (socket.readyState === WebSocket.CLOSED) {
     //    // Do your stuff...
     // }
-    // let element = document.querySelector(".chat-messages");
-    // element.scrollTop = element.scrollHeight;
+    let element = document.querySelector(".chat-messages");
+    element.scrollTop = element.scrollHeight;
+}
+
+async function displayNewPost(data) {
+    const post = await PostTemplate(data.MongoData.postID, data.MongoData.user, data.MongoData.date, data.MongoData
+        .postText, data.MongoData.likes, data.MongoData.shares, data.MongoData._id)
+    document.querySelector("#postsContainer").insertAdjacentHTML("afterbegin", post)
+    tryImages(data.MongoData.user)
+}
+
+
+function displayPosts(data) {
+    data.data.forEach(async e => {
+        const post = await PostTemplate(e.postID, e.user, e.date, e.postText, e.likes, e.shares, e._id)
+        document.querySelector("#postsContainer").insertAdjacentHTML("beforeend", post)
+        tryImages(e.user)
+        e.comments.forEach(async t => {
+            const post = await CommentTemplate(t.comment, t.user, t.date_posted)
+            const commentFooter = document.querySelector(`[data-post_id="${e.postID}"]`)
+                .querySelector(".post-footer")
+            commentFooter.insertAdjacentHTML("beforeend", post)
+            tryImages(e.user)
+        })
+    })
+}
+
+async function displayNewComment(data) {
+    const post = await CommentTemplate(data.newComment.comment, data.newComment.user, Date.now())
+    const commentFooter = document.querySelector(`[data-post_id="${data.model.postID}"]`)
+        .querySelector(".post-footer")
+    commentFooter.insertAdjacentHTML("beforeend", post)
+    tryImages(data.newComment.user)
+}
+
+function CommentUnderPost(id) {
+    const textBox = document.querySelector(`[data-comment_input_id="${id}"]`)
+    const body = {
+        user: `<?= $_SESSION['username']?>`,
+        comment: textBox.value,
+        intent: 'comment_first_line',
+        id: id
+    }
+    socket.send(JSON.stringify(body))
+
 }
 
 function loggedIn(data) {
@@ -451,13 +436,12 @@ function activateUserChat(data) {
     const ident = arr.join("-");
     currentUser = user
     const messageContainer = document.querySelector(".messaging")
-    console.log(user)
     const container = document.querySelector(`.container-${ident}`)
     if (container === null) {
-        messageContainer.insertAdjacentHTML("beforeend", `   <div class="card twoGrids container-${ident}" data-message_user="${id}" style="height:50%">
+        messageContainer.insertAdjacentHTML("beforeend", `   <div class="card twoGrids container-${ident}" data-message_user="${id}" >
         <div class="closeMessage-${ident}"><span onclick="closeMessage('${ident}')" >&#10006;</span> </div>
         <div class="twoGird-Item" style="position:relative">
-        <div class="py-2 px-4 border-bottom d-none d-lg-block" style="height:90%">
+        <div class="py-2 px-4 border-bottom d-lg-block" style="height:90%">
         <div class="position-relative" style="height:100%">
             <div class="chat-messages messageList-${ident} p-4" style="height:90%">
             </div>
@@ -521,7 +505,6 @@ function blockUser(id) {
     });
 };
 $("#openMessages").click(function(element) {
-    console.log("called")
     $(this).addClass("displayNone")
     $(".messageContainer").removeClass("displayNone")
 })
@@ -553,5 +536,69 @@ const loadFile = function(event) {
     img.classList.add("postImage")
     $(".PostImageContainer").prepend(img)
 };
+
+function PostTemplate(post_id, post_user, post_date, post_text, likes, shares, mongo_id) {
+    const post = `<div data-post_id="${post_id}" class="col-12 card">
+            <div class=" post">
+                <div class="post-heading d-flex flex-row align-items-center">
+                    <div class="pull-left postAvatar me-3 mb-3">
+                            <img class="postAvatar mr-1 img-${post_user}" alt="${post_user}">
+                    </div>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b>${post_user}</b></a>
+                            made a post.
+                        </div>
+                        <h6 class="text-muted time">${moment(post_date).fromNow()}</h6>
+                    </div>
+                </div>
+                <div class="post-description">
+                <div class="card p-3">
+
+                <p >${post_text}</p>
+                </div>
+                    
+                    <div class="stats">
+                        <a href="#" class="btn btn-default stat-item">
+                            <i class="bi bi-hand-thumbs-up"></i>  ${likes}
+                        </a>
+                        <a href="#" class="btn btn-default stat-item">
+                            <i class="bi bi-share"></i>  ${shares}
+                        </a>
+                    </div>
+                </div>
+                <div class="post-footer">
+                    <div class="input-group">
+                        <input class="form-control mb-5" data-comment_input_id="${mongo_id}" placeholder="Add a comment" type="text">
+                        <span class="input-group-addon" onclick="CommentUnderPost('${mongo_id}')">
+                            <a href="#"><i class="bi bi-pencil-square"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>`
+    return post
+}
+
+function CommentTemplate(comment, user, date) {
+    const commentTemp = `
+<ul class="comments-list card">
+                        <li class="comment ">
+                            <div class="post-heading d-flex flex-row align-items-center">
+                                <a class="pull-left" href="#">
+                                        <img class="postAvatar mr-1 img-${user}" alt="${user}">
+                                </a>
+                                <div class="comment-body ">
+                                    <div class="comment-heading d-flex flex-direction-row">
+                                        <h4 class="user me-3">${user}</h4>
+                                        <p class="time">${moment(date).fromNow()}</p>
+                                    </div>
+                                    <p>${comment}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>`
+    return commentTemp
+}
 </script>
 <?php  require_once(__DIR__.'./footer.php'); 
