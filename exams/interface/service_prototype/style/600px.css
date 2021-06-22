@@ -1,0 +1,45 @@
+@media screen and (min-width: 600px) {
+  .articlePreview {
+    display: unset;
+    grid-template-columns: unset;
+  }
+  .Header-image {
+    grid-column: span 3;
+  }
+  .carousel_container div img {
+    height: 100%;
+    width: auto;
+  }
+  article {
+    grid-template-columns: 10vw 80vw 10vw;
+  }
+  main > .articlePreviewSection > .articlePreview > .image {
+    height: 40vw;
+  }
+  .articlePreviewSection {
+    margin: 0rem 2rem;
+  }
+  .articlePreview .tagGroup {
+    margin: 1rem;
+  }
+  .articlePreview figcaption {
+    margin-top: 0rem;
+    margin-left: 1rem;
+    margin-bottom: 2rem;
+  }
+  .mt-4 {
+    overflow-x: hidden;
+  }
+  .soMeBox {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .categoryTag {
+    display: block !important;
+  }
+  .logo {
+    height: auto;
+    width: 25%;
+    margin-left: 1rem;
+  }
+}

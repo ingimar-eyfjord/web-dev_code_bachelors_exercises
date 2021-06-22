@@ -1,0 +1,18 @@
+@media screen and (min-width: 600px) {
+  #carouselExampleCaptions .tagGroup,
+  #carouselExampleCaptions figcaption {
+    display: unset;
+  }
+  .logo {
+    height: auto;
+    width: 20%;
+    margin-left: 1rem;
+  }
+  .hero h3 {
+    margin-top: 5rem;
+  }
+
+  .hero p:first-of-type {
+    margin-top: 2.5rem;
+  }
+}

@@ -4,3 +4,4 @@ logs/
 api/
 websocket/
 Faker-master/
+send_mail.php

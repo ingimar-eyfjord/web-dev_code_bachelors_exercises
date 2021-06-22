@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+      integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet" href="style/index.css" />
+    <link rel="stylesheet" href="style/0px.css" />
+    <link rel="stylesheet" href="style/600px.css" />
+    <link rel="stylesheet" href="style/800px.css" />
+    <link rel="stylesheet" href="style/1000px.css" />
+    <link rel="stylesheet" href="style/1800px.css" />
+    <title>Style Tile</title>
+  </head>
+  <body>
+    <header class="dashboard-nav Nav_header mb-3">
+      <a href="index.html"><img class="logo" src="icons/black.svg" alt="LogoImage" /></a>
+
+      <input class="menu-btn" type="checkbox" id="menu-btn" />
+      <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="articles.html">Articles</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <!-- <li><a href="/users">Admins</a></li> -->
+        
+        <li><a href="login.html">Login</a></li>
+        <li><a href="login.html">Logout</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+      </ul>
+    </header>
+
+    <main class="dashboard">
+      <aside class="left-toolbar">
+      
+
+        <a href="dashboard.html">
+          <div class="toolNavOption"><h2 class="toolNavName icon_dashboard">Dashboard</h2></div></a
+        >
+        <a href="write_article.html"
+          ><div class="toolNavOption"><h2 class="toolNavName icon_articles">Articles</h2></div></a
+        >
+        <div class="toolNavOption"><h2 class="toolNavName icon_quizes">Quizes</h2></div>
+        <a href="quizes.html"> <h3 class="toolNavName subToolName">All quizes</h3></a>
+        <a href="quizes_add.html"> <h3 class="toolNavName subToolName">Write quizes</h3></a>
+        <div class="toolNavOption"><h2 class="toolNavName icon_pages mt-4">Pages</h2></div>
+        <div class="toolNavOption"><h2 class="toolNavName icon_messages">Messages</h2></div>
+        <a href="users.html"><div class="toolNavOption"><h2 class="toolNavName icon_users">Users</h2></div></a>
+
+        <div class="toolNavOption"><h2 class="toolNavName icon_setting">Setting</h2></div>
+        <div class="toolNavOption"><h2 class="toolNavName icon_logout">Log out</h2></div>
+      </aside>
+      <section class="dashboard_container">
+        <div class="containerHeader ibox-content m-b-sm border-bottom">
+          <div class="p-xs d-flex flex-row">
+            <div class="pull-left">
+              <i class="mr-5 fa fa-puzzle-piece mid-icon"></i>
+            </div>
+            <div class="ms-5">
+              <h2>Create a new quiz</h2>
+              <span>Create a new quiz and link it to an article</span>
+            </div>
+          </div>
+        </div>
+        <div class="row" id="publish_container">
+          <div class="col-12" id="publish">
+            <h2>Publish</h2>
+            <div class="btn-group">
+              <button
+                class="btn btn-secondary btn-sm dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Status: Draft
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Subjects</a></li>
+                <li><a class="dropdown-item" href="#">Keywords</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Show All</a></li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <button
+                class="btn btn-secondary btn-sm dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Visibility: Public
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Subjects</a></li>
+                <li><a class="dropdown-item" href="#">Keywords</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Show All</a></li>
+              </ul>
+            </div>
+            <p>Publish: <input type="date" name="" id="" /></p>
+            <div>
+              <button class="btn btn-secondary">Save Draft</button>
+              <button class="btn btn-primary">Publish</button>
+            </div>
+          </div>
+        </div>
+        <div id="textEditor" class="container bootstrap snippets bootdey">
+          <div class="row mt-3" id="editor">
+            <div class="col-6">
+              <div class="input-group">
+                <span class="input-group-text btn-primary" id="basic-addon1"
+                  ><i class="fa fa-link" style="font-size: 1.5rem"></i
+                ></span>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Links to article"
+                  aria-label="Keywords"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="input-group">
+                <span class="input-group-text btn-primary" id="basic-addon1">Keywords</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Keyword, second keyword"
+                  aria-label="Keywords"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+            </div>
+
+            <div class="col-2 br-a br-light bg-light pv20 ph30">
+              <h4 class="micro-header">Insert Content Type</h4>
+              <div class="row text-center" id="content-type">
+                <div class="col-12">
+                  <a class="holder-style p15 mb20 holder-active" href="#dock-image">
+                    <span class="fa fa-check-square holder-icon"></span>
+                    <br />
+                    Multi answer
+                  </a>
+                </div>
+                <div class="col-12">
+                  <a class="holder-style p15 mb20" href="#dock-panel">
+                    <span class="fa fa-check-circle holder-icon"></span>
+                    <br />
+                    Single answer
+                  </a>
+                </div>
+
+                <div class="col-12">
+                  <a class="holder-style p15 mb20" href="#dock-table">
+                    <span class="holder-icon"><strong>T</strong></span>
+                    <br />
+                    Current question text
+                  </a>
+                </div>
+
+                <div class="col-12">
+                  <a class="holder-style p15 mb20" href="#dock-table">
+                    <span class="fa fa-question holder-icon"></span>
+                    <br />
+                   Add a question
+                  </a>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-10 br-a br-light bg-light d-flex flex-column text-container">
+              <div id="dock-content" class="ph30 pt-3">
+                <p class="holder-style p15 mb20 holder mt-5 d-flex flex-column align-items-center">
+                  This is a question that was inserted already, you can create many questions with either multiple
+                  correct answerers or a singular correct answer.
+                </p>
+
+                <p class="holder-style p15 mb20 holder mt-5 d-flex flex-column align-items-center">
+                  This is a multi answer question element, you need to choose if this is a correct answer.
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Correct answer?
+                    </label>
+                  </div>
+                </p>
+
+                <p class="holder-style p15 mb20 holder mt-5 d-flex flex-column align-items-center">
+                  This is a singular right answer question, you need to choose if this is a correct answer.
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Correct answer?
+                    </label>
+                  </div>
+                </p>
+
+                <p class="holder-style p15 mb20 holder mt-5 d-flex flex-column align-items-center">
+                  This is a singular right answer question, you need to choose if this is a correct answer.
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Correct answer?
+                    </label>
+                  </div>
+                </p>
+
+                <div class="col-12">
+                  <a
+                    class="holder-style p15 mb20 holder-active mt-5 d-flex flex-column align-items-center"
+                    href="#dock-image"
+                  >
+                    <span style="font-size: 3rem" class="fa fa-plus holder-icon"></span>
+                    <br />
+                    Multi answer
+                  </a>
+                </div>
+                <div class="col-12 align-items-center justify-content-center d-flex flex-row mb-2">
+                  <h3>Questions</h3>
+                </div>
+
+                <div class="col-12 align-items-center justify-content-center d-flex flex-row">
+                  <ul class="pagination justify-self-center align-self-center">
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <style>
+      .bg-light {
+        background-color: #fafafa;
+        color: #666;
+      }
+
+      .br-light {
+        border-color: #e7e7e7 !important;
+      }
+
+      .br-a {
+        border: 1px solid #eeeeee !important;
+      }
+
+      .ph30 {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+      }
+
+      .ph60 {
+        padding: 60px !important;
+      }
+
+      .pv20 {
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
+      }
+
+      .bg-light.dark {
+        background-color: #f5f5f5;
+      }
+
+      .micro-header {
+        color: var(--text);
+        text-align: center;
+        font-weight: 400;
+        margin-bottom: 20px;
+      }
+
+      h4,
+      .h4 {
+        font-size: 15px;
+      }
+
+      .holder-style.holder-active {
+        background-color: #fff;
+        border: 2px dashed var(--CATColour);
+      }
+
+      .mb20 {
+        margin-bottom: 20px !important;
+      }
+
+      .p15 {
+        padding: 15px !important;
+      }
+
+      .holder-style {
+        display: block;
+        padding: 9px 16px;
+        color: var(--text);
+        background-color: #f1f1f1;
+        border: 2px dashed #d9d9d9;
+        -webkit-transition: all 0.15s ease;
+        -moz-transition: all 0.15s ease;
+        transition: all 0.15s ease;
+      }
+
+      .holder-style.holder-active .holder-icon {
+        color: var(--CATColour);
+      }
+
+      .holder-style .holder-icon {
+        color: #aaa;
+        font-size: 30px;
+        padding-bottom: 10px;
+      }
+    </style>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+      integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js"></script>
+  </body>
+</html>
